@@ -35,13 +35,15 @@ def uart_send(uart, text, exmirror):
                char = char_cr
             uart.write(char)
             char_res = uart.read(1) # Bytes
-            if char_res == char:
+            if char_res == char: # Receive Succeed
                 flag = False
                 if exmirror == True:
                     char_res = chr(int.from_bytes(char_res, "little"))
                     print(char_res, end="")
-            elif char_res == char_nak:
+            elif char_res == char_nak: # Receive Negative Acknowledge
                 time.sleep(0.001)
+            else: # Receive Fails
+                flag = False
 
 def uart_receive(uart):
         char = uart.read(1)
@@ -51,20 +53,19 @@ def uart_receive(uart):
             char = uart.read(1)
 
 def uart_input(uart):
-        flag = True
-        while flag == True:
+        while True:
             uart_receive(uart)
-            text_input = input()
-            text_input_len = len(text_input)
+            try:
+                text_input = input()
+            except KeyboardInterrupt:
+                break
             print("\x1B[A", end="")
-            if text_input_len != 0:
-                text_input += "\r"
-                text_input = text_input.encode("ascii", "replace")
-                uart_send(uart, text_input, False)
-            else:
-                flag = False # If No Input, Loop Ends
+            text_input += "\r"
+            text_input = text_input.encode("ascii", "replace")
+            uart_send(uart, text_input, False)
 
 uart_send(uart, text_all, True)
 uart_receive(uart)
 uart_input(uart)
 uart.close()
+
