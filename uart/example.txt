@@ -1,3 +1,5 @@
-.a Hello World!
-print .a
+.a \e[31;42mHello
+   \n
+.b World\s\s!\e[0m
+print .a .b
 run
