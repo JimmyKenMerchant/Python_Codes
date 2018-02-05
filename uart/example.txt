@@ -1,5 +1,15 @@
-.a \e[31;42mHello
-   \n
-.b World\s\s!\e[0m
-print .a .b
+.a \e[32;43mHello\e[0m
+.b \e[33;41mWorld!\e[0m
+.c 0b10000000,
+   0b01000000,
+   0b00100000,
+   0b00010000,
+   0b00001000,
+   0b00000100,
+   0b00000010,
+.d 0b00000001
+.e 0
+.f 0
+arr .f .c .d .e
+pict .a .b .f .e
 run
