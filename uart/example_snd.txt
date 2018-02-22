@@ -1,14 +1,20 @@
-.a 0
-.b 9,8,7,6,5,4,3,4,5,6,7,8,
+* This script is for Music Test on Aloha Calc
+.arr0 0
+.d 9,8,7,6,5,4,3,4,5,6,7,8,
    9,9,9,9,9,9,8,8,8,8,8,8,
    7,7,7,7,7,7,6,6,6,6,6,6,
    5,5,4,4,3,3,3,3,4,4,5,5,
-.c 0xFFFF
-.d 1
-.e -1
-.f Press Enter to End
-arr .a .b .c .d
-snd .a .e
-input .f
+   0xFFFF
+.dptr 0
+.length 5
+.order 1
+.repeat -1
+.str Press Enter to End
+.answer 0
+ptr .dptr .d
+arr .arr0 .dptr .length .order
+snd .arr0 .repeat
+print .str
+input .answer
 clrsnd
 run
