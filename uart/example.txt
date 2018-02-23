@@ -9,11 +9,15 @@
    0b00000100,
    0b00000010,
    0b00000001
-.dptr 0
-.length 8
-.order 0
-.arr0 0
-ptr .dptr .d
-arr .arr0 .dptr .length .order
-pict .true .false .arr0 .order
+.d-end
+.d-ptr
+.d-length
+.arr0
+.1-byte-align 0
+ptr .d-end .d-end
+ptr .d-ptr .d
+sub .d-length .d-end .d-ptr
+arr .arr0 .d-ptr .d-length .1-byte-align
+pict .true .false .arr0 .1-byte-align
+end
 run

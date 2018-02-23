@@ -7,14 +7,15 @@
    0xFFFF
 .dptr 0
 .length 5
-.order 1
+.2-byte-align 1
 .repeat -1
 .str Press Enter to End
 .answer 0
 ptr .dptr .d
-arr .arr0 .dptr .length .order
+arr .arr0 .dptr .length .2-byte-align
 snd .arr0 .repeat
 print .str
 input .answer
 clrsnd
+end
 run
