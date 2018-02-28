@@ -1,21 +1,42 @@
-* This script is for Music Test on Aloha Calc
-.arr0 0
+* This script is for Music Test on Aloha Calc.
+.arr0
+.arr1
 .d 9,8,7,6,5,4,3,4,5,6,7,8,
    9,9,9,9,9,9,8,8,8,8,8,8,
    7,7,7,7,7,7,6,6,6,6,6,6,
    5,5,4,4,3,3,3,3,4,4,5,5,
    0xFFFF
-.dptr 0
-.length 5
+.d-length
+.d-ptr
+.i 37,38,39,37,38,39,37,38,39,37,38,39,
+   0xFFFF
+.i-length
+.i-ptr
 .2-byte-align 1
-.repeat -1
-.str Press Enter to End
-.answer 0
-ptr .dptr .d
-arr .arr0 .dptr .length .2-byte-align
-snd .arr0 .repeat
-print .str
+.repeat-infinite -1
+.repeat-one 1
+.str-prompt Press "e" then Enter to end: 
+.answer
+.str-end e
+
+* Get pointer and length of array of data.
+ptr .d-ptr .d
+vlen .d-length .d
+arr .arr0 .d-ptr .d-length .2-byte-align
+ptr .i-ptr .i
+vlen .i-length .i
+arr .arr1 .i-ptr .i-length .2-byte-align
+* Start sound
+snd .arr0 .repeat-infinite
+
+* If input is "e", program will end.
+.loop print .str-prompt
 input .answer
+scmp .answer .str-end
+skpeq
+intsnd .arr1 .repeat-one
+skpeq
+jmp .loop
 clrsnd
 end
 run
