@@ -1,0 +1,15 @@
+* This script is for Aloha Calc
+.year 2018
+.month 3
+.week
+.day 2
+.hour 17
+.minute 0
+.second 0
+.usecond 0
+.sleep-time 10000000
+stime .year .month .day .hour .minute .second .usecond
+sleep .sleep-time
+gtime .year .month .week .day .hour .minute .second .usecond
+end
+run
