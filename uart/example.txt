@@ -14,10 +14,15 @@
 .d-length
 .arr0
 .1-byte-align 0
+.row    10
+.column 20
+.font-size 8
 ptr .d-end .d-end
 ptr .d-ptr .d
 sub .d-length .d-end .d-ptr
 arr .arr0 .d-ptr .d-length .1-byte-align
+fnt .font-size .font-size
+csr .row .column
 pict .true .false .arr0 .1-byte-align
 end
 run
