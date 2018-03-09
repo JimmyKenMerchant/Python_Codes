@@ -1,0 +1,30 @@
+* This script is for GPIO Test on Aloha Calc.
+.arr0
+.d 0b10000000000100000000000000000000,
+   0b10000100000000000000000000000000,
+   0
+.d-length
+.d-ptr
+.4-byte-align 2
+.repeat-infinite -1
+.stay-status 1
+.str-prompt Press "e" then Enter to end: 
+.answer
+.str-end e
+
+* Get pointer and length of array of data.
+ptr .d-ptr .d
+vlen .d-length .d
+arr .arr0 .d-ptr .d-length .4-byte-align
+* Start GPIO
+gpio .arr0 .repeat-infinite
+
+* If input is "e", program will end.
+.loop print .str-prompt
+input .answer
+scmp .answer .str-end
+skpeq
+jmp .loop
+clrgpio .stay-status
+end
+run
