@@ -13,6 +13,38 @@ gpio.setmode(gpio.BCM)
 list_gpio_setup = [16,19,20,21,26]
 gpio.setup(list_gpio_setup, gpio.OUT)
 
+button1_text = "Button1"
+button2_text = "Button2"
+button3_text = "Button3"
+button4_text = "Button4"
+button5_text = "Button5"
+button6_text = "Button6"
+button7_text = "Button7"
+button8_text = "Button8"
+button9_text = "Button9"
+button10_text = "Button10"
+button11_text = "Button11"
+button12_text = "Button12"
+button13_text = "Button13"
+button14_text = "Button14"
+button15_text = "Button15"
+button16_text = "Button16"
+button17_text = "Button17"
+button18_text = "Button18"
+button19_text = "Button19"
+button20_text = "Button20"
+button21_text = "Button21"
+button22_text = "Button22"
+button23_text = "Button23"
+button24_text = "Button24"
+button25_text = "Button25"
+button26_text = "Button26"
+button27_text = "Button27"
+button28_text = "Button28"
+button29_text = "UP"
+button30_text = "DOWN"
+button31_text = "CLEAR"
+
 #time.sleep(0.5)
 
 class GraphicalInterface:
@@ -51,191 +83,270 @@ class GraphicalInterface:
         list_gpio_button30 = [19,20,21,26]
         list_gpio_button31 = [16,19,20,21,26]
 
-        def push_button(event):
-            if event.widget["text"] == "Button1":
-                gpio.output(list_gpio_button1, 1)
-            elif event.widget["text"] == "Button2":
-                gpio.output(list_gpio_button2, 1)
-            elif event.widget["text"] == "Button3":
-                gpio.output(list_gpio_button3, 1)
-            elif event.widget["text"] == "Button4":
-                gpio.output(list_gpio_button4, 1)
-            elif event.widget["text"] == "Button5":
-                gpio.output(list_gpio_button5, 1)
-            elif event.widget["text"] == "Button6":
-                gpio.output(list_gpio_button6, 1)
-            elif event.widget["text"] == "Button7":
-                gpio.output(list_gpio_button7, 1)
-            elif event.widget["text"] == "Button8":
-                gpio.output(list_gpio_button8, 1)
-            elif event.widget["text"] == "Button9":
-                gpio.output(list_gpio_button9, 1)
-            elif event.widget["text"] == "Button10":
-                gpio.output(list_gpio_button10, 1)
-            elif event.widget["text"] == "Button11":
-                gpio.output(list_gpio_button11, 1)
-            elif event.widget["text"] == "Button12":
-                gpio.output(list_gpio_button12, 1)
-            elif event.widget["text"] == "Button13":
-                gpio.output(list_gpio_button13, 1)
-            elif event.widget["text"] == "Button14":
-                gpio.output(list_gpio_button14, 1)
-            elif event.widget["text"] == "Button15":
-                gpio.output(list_gpio_button15, 1)
-            elif event.widget["text"] == "Button16":
-                gpio.output(list_gpio_button16, 1)
-            elif event.widget["text"] == "Button17":
-                gpio.output(list_gpio_button17, 1)
-            elif event.widget["text"] == "Button18":
-                gpio.output(list_gpio_button18, 1)
-            elif event.widget["text"] == "Button19":
-                gpio.output(list_gpio_button19, 1)
-            elif event.widget["text"] == "Button20":
-                gpio.output(list_gpio_button20, 1)
-            elif event.widget["text"] == "Button21":
-                gpio.output(list_gpio_button21, 1)
-            elif event.widget["text"] == "Button22":
-                gpio.output(list_gpio_button22, 1)
-            elif event.widget["text"] == "Button23":
-                gpio.output(list_gpio_button23, 1)
-            elif event.widget["text"] == "Button24":
-                gpio.output(list_gpio_button24, 1)
-            elif event.widget["text"] == "Button25":
-                gpio.output(list_gpio_button25, 1)
-            elif event.widget["text"] == "Button26":
-                gpio.output(list_gpio_button26, 1)
-            elif event.widget["text"] == "Button27":
-                gpio.output(list_gpio_button27, 1)
-            elif event.widget["text"] == "Button28":
-                gpio.output(list_gpio_button28, 1)
-            elif event.widget["text"] == "Button29":
-                gpio.output(list_gpio_button29, 1)
-            elif event.widget["text"] == "Button30":
-                gpio.output(list_gpio_button30, 1)
-            elif event.widget["text"] == "Button31":
-                gpio.output(list_gpio_button31, 1)
+        def push_button1(event):
+            gpio.output(list_gpio_button1, 1)
+        def push_button2(event):
+            gpio.output(list_gpio_button2, 1)
+        def push_button3(event):
+            gpio.output(list_gpio_button3, 1)
+        def push_button4(event):
+            gpio.output(list_gpio_button4, 1)
+        def push_button5(event):
+            gpio.output(list_gpio_button5, 1)
+        def push_button6(event):
+            gpio.output(list_gpio_button6, 1)
+        def push_button7(event):
+            gpio.output(list_gpio_button7, 1)
+        def push_button8(event):
+            gpio.output(list_gpio_button8, 1)
+        def push_button9(event):
+            gpio.output(list_gpio_button9, 1)
+        def push_button10(event):
+            gpio.output(list_gpio_button10, 1)
+        def push_button11(event):
+            gpio.output(list_gpio_button11, 1)
+        def push_button12(event):
+            gpio.output(list_gpio_button12, 1)
+        def push_button13(event):
+            gpio.output(list_gpio_button13, 1)
+        def push_button14(event):
+            gpio.output(list_gpio_button14, 1)
+        def push_button15(event):
+            gpio.output(list_gpio_button15, 1)
+        def push_button16(event):
+            gpio.output(list_gpio_button16, 1)
+        def push_button17(event):
+            gpio.output(list_gpio_button17, 1)
+        def push_button18(event):
+            gpio.output(list_gpio_button18, 1)
+        def push_button19(event):
+            gpio.output(list_gpio_button19, 1)
+        def push_button20(event):
+            gpio.output(list_gpio_button20, 1)
+        def push_button21(event):
+            gpio.output(list_gpio_button21, 1)
+        def push_button22(event):
+            gpio.output(list_gpio_button22, 1)
+        def push_button23(event):
+            gpio.output(list_gpio_button23, 1)
+        def push_button24(event):
+            gpio.output(list_gpio_button24, 1)
+        def push_button25(event):
+            gpio.output(list_gpio_button25, 1)
+        def push_button26(event):
+            gpio.output(list_gpio_button26, 1)
+        def push_button27(event):
+            gpio.output(list_gpio_button27, 1)
+        def push_button28(event):
+            gpio.output(list_gpio_button28, 1)
+        def push_button29(event):
+            gpio.output(list_gpio_button29, 1)
+        def push_button30(event):
+            gpio.output(list_gpio_button30, 1)
+        def push_button31(event):
+            gpio.output(list_gpio_button31, 1)
 
-        def release_button(event):
-            if event.widget["text"] == "Button1":
-                gpio.output(list_gpio_button1, 0)
-            elif event.widget["text"] == "Button2":
-                gpio.output(list_gpio_button2, 0)
-            elif event.widget["text"] == "Button3":
-                gpio.output(list_gpio_button3, 0)
-            elif event.widget["text"] == "Button4":
-                gpio.output(list_gpio_button4, 0)
-            elif event.widget["text"] == "Button5":
-                gpio.output(list_gpio_button5, 0)
-            elif event.widget["text"] == "Button6":
-                gpio.output(list_gpio_button6, 0)
-            elif event.widget["text"] == "Button7":
-                gpio.output(list_gpio_button7, 0)
-            elif event.widget["text"] == "Button8":
-                gpio.output(list_gpio_button8, 0)
-            elif event.widget["text"] == "Button9":
-                gpio.output(list_gpio_button9, 0)
-            elif event.widget["text"] == "Button10":
-                gpio.output(list_gpio_button10, 0)
-            elif event.widget["text"] == "Button11":
-                gpio.output(list_gpio_button11, 0)
-            elif event.widget["text"] == "Button12":
-                gpio.output(list_gpio_button12, 0)
-            elif event.widget["text"] == "Button13":
-                gpio.output(list_gpio_button13, 0)
-            elif event.widget["text"] == "Button14":
-                gpio.output(list_gpio_button14, 0)
-            elif event.widget["text"] == "Button15":
-                gpio.output(list_gpio_button15, 0)
-            elif event.widget["text"] == "Button16":
-                gpio.output(list_gpio_button16, 0)
-            elif event.widget["text"] == "Button17":
-                gpio.output(list_gpio_button17, 0)
-            elif event.widget["text"] == "Button18":
-                gpio.output(list_gpio_button18, 0)
-            elif event.widget["text"] == "Button19":
-                gpio.output(list_gpio_button19, 0)
-            elif event.widget["text"] == "Button20":
-                gpio.output(list_gpio_button20, 0)
-            elif event.widget["text"] == "Button21":
-                gpio.output(list_gpio_button21, 0)
-            elif event.widget["text"] == "Button22":
-                gpio.output(list_gpio_button22, 0)
-            elif event.widget["text"] == "Button23":
-                gpio.output(list_gpio_button23, 0)
-            elif event.widget["text"] == "Button24":
-                gpio.output(list_gpio_button24, 0)
-            elif event.widget["text"] == "Button25":
-                gpio.output(list_gpio_button25, 0)
-            elif event.widget["text"] == "Button26":
-                gpio.output(list_gpio_button26, 0)
-            elif event.widget["text"] == "Button27":
-                gpio.output(list_gpio_button27, 0)
-            elif event.widget["text"] == "Button28":
-                gpio.output(list_gpio_button28, 0)
-            elif event.widget["text"] == "Button29":
-                gpio.output(list_gpio_button29, 0)
-            elif event.widget["text"] == "Button30":
-                gpio.output(list_gpio_button30, 0)
-            elif event.widget["text"] == "Button31":
-                gpio.output(list_gpio_button31, 0)
+        def release_button1(event):
+            gpio.output(list_gpio_button1, 0)
+        def release_button2(event):
+            gpio.output(list_gpio_button2, 0)
+        def release_button3(event):
+            gpio.output(list_gpio_button3, 0)
+        def release_button4(event):
+            gpio.output(list_gpio_button4, 0)
+        def release_button5(event):
+            gpio.output(list_gpio_button5, 0)
+        def release_button6(event):
+            gpio.output(list_gpio_button6, 0)
+        def release_button7(event):
+            gpio.output(list_gpio_button7, 0)
+        def release_button8(event):
+            gpio.output(list_gpio_button8, 0)
+        def release_button9(event):
+            gpio.output(list_gpio_button9, 0)
+        def release_button10(event):
+            gpio.output(list_gpio_button10, 0)
+        def release_button11(event):
+            gpio.output(list_gpio_button11, 0)
+        def release_button12(event):
+            gpio.output(list_gpio_button12, 0)
+        def release_button13(event):
+            gpio.output(list_gpio_button13, 0)
+        def release_button14(event):
+            gpio.output(list_gpio_button14, 0)
+        def release_button15(event):
+            gpio.output(list_gpio_button15, 0)
+        def release_button16(event):
+            gpio.output(list_gpio_button16, 0)
+        def release_button17(event):
+            gpio.output(list_gpio_button17, 0)
+        def release_button18(event):
+            gpio.output(list_gpio_button18, 0)
+        def release_button19(event):
+            gpio.output(list_gpio_button19, 0)
+        def release_button20(event):
+            gpio.output(list_gpio_button20, 0)
+        def release_button21(event):
+            gpio.output(list_gpio_button21, 0)
+        def release_button22(event):
+            gpio.output(list_gpio_button22, 0)
+        def release_button23(event):
+            gpio.output(list_gpio_button23, 0)
+        def release_button24(event):
+            gpio.output(list_gpio_button24, 0)
+        def release_button25(event):
+            gpio.output(list_gpio_button25, 0)
+        def release_button26(event):
+            gpio.output(list_gpio_button26, 0)
+        def release_button27(event):
+            gpio.output(list_gpio_button27, 0)
+        def release_button28(event):
+            gpio.output(list_gpio_button28, 0)
+        def release_button29(event):
+            gpio.output(list_gpio_button29, 0)
+        def release_button30(event):
+            gpio.output(list_gpio_button30, 0)
+        def release_button31(event):
+            gpio.output(list_gpio_button31, 0)
 
         self.__root = root
-        self.__root.title("GPIO Push Button Ver.0.8")
+        self.__root.title("GPIO Push Button Ver.0.9")
+        self.__root["bg"] = "blue"
 
         frame = tk.Frame(self.__root, bg="blue")
         frame.pack(padx=10, pady=10, ipadx=10, ipady=10, side=tk.BOTTOM)
 
-        button_1 = tk.Button(frame, width=6, height=2, text="Button1", font=("Roboto", "20"), bg="black", fg="blue")
+        button_1 = tk.Button(frame, width=6, height=2, text=button1_text, font=("Roboto", "20"), bg="black", fg="blue")
         button_1.grid(row=0, column=0, columnspan=1, padx=(25,5), pady=(25,5), ipadx=10, ipady=10)
-        button_2 = tk.Button(frame, width=6, height=2, text="Button2", font=("Roboto", "20"), bg="black", fg="green")
+        button_2 = tk.Button(frame, width=6, height=2, text=button2_text, font=("Roboto", "20"), bg="black", fg="green")
         button_2.grid(row=0, column=1, columnspan=1, padx=5, pady=(25,5), ipadx=10, ipady=10)
-        button_3 = tk.Button(frame, width=6, height=2, text="Button3", font=("Roboto", "20"), bg="black", fg="red")
+        button_3 = tk.Button(frame, width=6, height=2, text=button3_text, font=("Roboto", "20"), bg="black", fg="red")
         button_3.grid(row=0, column=2, columnspan=1, padx=5, pady=(25,5), ipadx=10, ipady=10)
-        button_4 = tk.Button(frame, width=6, height=2, text="Button4", font=("Roboto", "20"), bg="black", fg="cyan")
+        button_4 = tk.Button(frame, width=6, height=2, text=button4_text, font=("Roboto", "20"), bg="black", fg="cyan")
         button_4.grid(row=0, column=3, columnspan=1, padx=5, pady=(25,5), ipadx=10, ipady=10)
-        button_5 = tk.Button(frame, width=6, height=2, text="Button5", font=("Roboto", "20"), bg="black", fg="magenta")
+        button_5 = tk.Button(frame, width=6, height=2, text=button5_text, font=("Roboto", "20"), bg="black", fg="magenta")
         button_5.grid(row=0, column=4, columnspan=1, padx=5, pady=(25,5), ipadx=10, ipady=10)
-        button_6 = tk.Button(frame, width=6, height=2, text="Button6", font=("Roboto", "20"), bg="black", fg="yellow")
+        button_6 = tk.Button(frame, width=6, height=2, text=button6_text, font=("Roboto", "20"), bg="black", fg="yellow")
         button_6.grid(row=0, column=5, columnspan=1, padx=5, pady=(25,5), ipadx=10, ipady=10)
 
-        button_7 = tk.Button(frame, width=6, height=2, text="Button7", font=("Roboto", "20"), bg="gray", fg="blue")
+        button_7 = tk.Button(frame, width=6, height=2, text=button7_text, font=("Roboto", "20"), bg="gray", fg="blue")
         button_7.grid(row=1, column=0, columnspan=1, padx=(25,5), pady=5, ipadx=10, ipady=10)
-        button_8 = tk.Button(frame, width=6, height=2, text="Button8", font=("Roboto", "20"), bg="gray", fg="green")
+        button_8 = tk.Button(frame, width=6, height=2, text=button8_text, font=("Roboto", "20"), bg="gray", fg="green")
         button_8.grid(row=1, column=1, columnspan=1, padx=5, pady=5, ipadx=10, ipady=10)
-        button_9 = tk.Button(frame, width=6, height=2, text="Button9", font=("Roboto", "20"), bg="gray", fg="red")
+        button_9 = tk.Button(frame, width=6, height=2, text=button9_text, font=("Roboto", "20"), bg="gray", fg="red")
         button_9.grid(row=1, column=2, columnspan=1, padx=5, pady=5, ipadx=10, ipady=10)
-        button_10 = tk.Button(frame, width=6, height=2, text="Button10", font=("Roboto", "20"), bg="gray", fg="cyan")
+        button_10 = tk.Button(frame, width=6, height=2, text=button10_text, font=("Roboto", "20"), bg="gray", fg="cyan")
         button_10.grid(row=1, column=3, columnspan=1, padx=5, pady=5, ipadx=10, ipady=10)
-        button_11 = tk.Button(frame, width=6, height=2, text="Button11", font=("Roboto", "20"), bg="gray", fg="magenta")
+        button_11 = tk.Button(frame, width=6, height=2, text=button11_text, font=("Roboto", "20"), bg="gray", fg="magenta")
         button_11.grid(row=1, column=4, columnspan=1, padx=5, pady=5, ipadx=10, ipady=10)
-        button_12 = tk.Button(frame, width=6, height=2, text="Button12", font=("Roboto", "20"), bg="gray", fg="yellow")
+        button_12 = tk.Button(frame, width=6, height=2, text=button12_text, font=("Roboto", "20"), bg="gray", fg="yellow")
         button_12.grid(row=1, column=5, columnspan=1, padx=5, pady=5, ipadx=10, ipady=10)
 
+        button_13 = tk.Button(frame, width=6, height=2, text=button13_text, font=("Roboto", "20"), bg="black", fg="blue")
+        button_13.grid(row=2, column=0, columnspan=1, padx=(25,5), pady=5, ipadx=10, ipady=10)
+        button_14 = tk.Button(frame, width=6, height=2, text=button14_text, font=("Roboto", "20"), bg="black", fg="green")
+        button_14.grid(row=2, column=1, columnspan=1, padx=5, pady=5, ipadx=10, ipady=10)
+        button_15 = tk.Button(frame, width=6, height=2, text=button15_text, font=("Roboto", "20"), bg="black", fg="red")
+        button_15.grid(row=2, column=2, columnspan=1, padx=5, pady=5, ipadx=10, ipady=10)
+        button_16 = tk.Button(frame, width=6, height=2, text=button16_text, font=("Roboto", "20"), bg="black", fg="cyan")
+        button_16.grid(row=2, column=3, columnspan=1, padx=5, pady=5, ipadx=10, ipady=10)
+        button_17 = tk.Button(frame, width=6, height=2, text=button17_text, font=("Roboto", "20"), bg="black", fg="magenta")
+        button_17.grid(row=2, column=4, columnspan=1, padx=5, pady=5, ipadx=10, ipady=10)
+        button_18 = tk.Button(frame, width=6, height=2, text=button18_text, font=("Roboto", "20"), bg="black", fg="yellow")
+        button_18.grid(row=2, column=5, columnspan=1, padx=5, pady=5, ipadx=10, ipady=10)
+
+        button_19 = tk.Button(frame, width=6, height=2, text=button19_text, font=("Roboto", "20"), bg="gray", fg="blue")
+        button_19.grid(row=3, column=0, columnspan=1, padx=(25,5), pady=5, ipadx=10, ipady=10)
+        button_20 = tk.Button(frame, width=6, height=2, text=button20_text, font=("Roboto", "20"), bg="gray", fg="green")
+        button_20.grid(row=3, column=1, columnspan=1, padx=5, pady=5, ipadx=10, ipady=10)
+        button_21 = tk.Button(frame, width=6, height=2, text=button21_text, font=("Roboto", "20"), bg="gray", fg="red")
+        button_21.grid(row=3, column=2, columnspan=1, padx=5, pady=5, ipadx=10, ipady=10)
+        button_22 = tk.Button(frame, width=6, height=2, text=button22_text, font=("Roboto", "20"), bg="gray", fg="cyan")
+        button_22.grid(row=3, column=3, columnspan=1, padx=5, pady=5, ipadx=10, ipady=10)
+        button_23 = tk.Button(frame, width=6, height=2, text=button23_text, font=("Roboto", "20"), bg="gray", fg="magenta")
+        button_23.grid(row=3, column=4, columnspan=1, padx=5, pady=5, ipadx=10, ipady=10)
+        button_24 = tk.Button(frame, width=6, height=2, text=button24_text, font=("Roboto", "20"), bg="gray", fg="yellow")
+        button_24.grid(row=3, column=5, columnspan=1, padx=5, pady=5, ipadx=10, ipady=10)
+
+        button_25 = tk.Button(frame, width=6, height=2, text=button25_text, font=("Roboto", "20"), bg="black", fg="blue")
+        button_25.grid(row=4, column=0, columnspan=1, padx=(25,5), pady=5, ipadx=10, ipady=10)
+        button_26 = tk.Button(frame, width=6, height=2, text=button26_text, font=("Roboto", "20"), bg="black", fg="green")
+        button_26.grid(row=4, column=1, columnspan=1, padx=5, pady=5, ipadx=10, ipady=10)
+        button_27 = tk.Button(frame, width=6, height=2, text=button27_text, font=("Roboto", "20"), bg="black", fg="red")
+        button_27.grid(row=4, column=2, columnspan=1, padx=5, pady=5, ipadx=10, ipady=10)
+        button_28 = tk.Button(frame, width=6, height=2, text=button28_text, font=("Roboto", "20"), bg="black", fg="cyan")
+        button_28.grid(row=4, column=3, columnspan=1, padx=5, pady=5, ipadx=10, ipady=10)
+        button_29 = tk.Button(frame, width=6, height=2, text=button29_text, font=("Roboto", "20"), bg="black", fg="magenta")
+        button_29.grid(row=4, column=4, columnspan=1, padx=5, pady=5, ipadx=10, ipady=10)
+        button_30 = tk.Button(frame, width=6, height=2, text=button30_text, font=("Roboto", "20"), bg="black", fg="yellow")
+        button_30.grid(row=4, column=5, columnspan=1, padx=5, pady=5, ipadx=10, ipady=10)
+
+        button_31 = tk.Button(frame, width=40, height=2, text=button31_text, font=("Roboto", "20"), bg="gray", fg="yellow")
+        button_31.grid(row=5, column=0, columnspan=6, padx=5, pady=5, ipadx=10, ipady=10)
+
         # Left Mouse Button
-        button_1.bind("<Button-1>", push_button)
-        button_1.bind("<ButtonRelease-1>", release_button)
-        button_2.bind("<Button-1>", push_button)
-        button_2.bind("<ButtonRelease-1>", release_button)
-        button_3.bind("<Button-1>", push_button)
-        button_3.bind("<ButtonRelease-1>", release_button)
-        button_4.bind("<Button-1>", push_button)
-        button_4.bind("<ButtonRelease-1>", release_button)
-        button_5.bind("<Button-1>", push_button)
-        button_5.bind("<ButtonRelease-1>", release_button)
-        button_6.bind("<Button-1>", push_button)
-        button_6.bind("<ButtonRelease-1>", release_button)
-        button_7.bind("<Button-1>", push_button)
-        button_7.bind("<ButtonRelease-1>", release_button)
-        button_8.bind("<Button-1>", push_button)
-        button_8.bind("<ButtonRelease-1>", release_button)
-        button_9.bind("<Button-1>", push_button)
-        button_9.bind("<ButtonRelease-1>", release_button)
-        button_10.bind("<Button-1>", push_button)
-        button_10.bind("<ButtonRelease-1>", release_button)
-        button_11.bind("<Button-1>", push_button)
-        button_11.bind("<ButtonRelease-1>", release_button)
-        button_12.bind("<Button-1>", push_button)
-        button_12.bind("<ButtonRelease-1>", release_button)
+        button_1.bind("<Button-1>", push_button1)
+        button_1.bind("<ButtonRelease-1>", release_button1)
+        button_2.bind("<Button-1>", push_button2)
+        button_2.bind("<ButtonRelease-1>", release_button2)
+        button_3.bind("<Button-1>", push_button3)
+        button_3.bind("<ButtonRelease-1>", release_button3)
+        button_4.bind("<Button-1>", push_button4)
+        button_4.bind("<ButtonRelease-1>", release_button4)
+        button_5.bind("<Button-1>", push_button5)
+        button_5.bind("<ButtonRelease-1>", release_button5)
+        button_6.bind("<Button-1>", push_button6)
+        button_6.bind("<ButtonRelease-1>", release_button6)
+        button_7.bind("<Button-1>", push_button7)
+        button_7.bind("<ButtonRelease-1>", release_button7)
+        button_8.bind("<Button-1>", push_button8)
+        button_8.bind("<ButtonRelease-1>", release_button8)
+        button_9.bind("<Button-1>", push_button9)
+        button_9.bind("<ButtonRelease-1>", release_button9)
+        button_10.bind("<Button-1>", push_button10)
+        button_10.bind("<ButtonRelease-1>", release_button10)
+        button_11.bind("<Button-1>", push_button11)
+        button_11.bind("<ButtonRelease-1>", release_button11)
+        button_12.bind("<Button-1>", push_button12)
+        button_12.bind("<ButtonRelease-1>", release_button12)
+        button_13.bind("<Button-1>", push_button13)
+        button_13.bind("<ButtonRelease-1>", release_button13)
+        button_14.bind("<Button-1>", push_button14)
+        button_14.bind("<ButtonRelease-1>", release_button14)
+        button_15.bind("<Button-1>", push_button15)
+        button_15.bind("<ButtonRelease-1>", release_button15)
+        button_16.bind("<Button-1>", push_button16)
+        button_16.bind("<ButtonRelease-1>", release_button16)
+        button_17.bind("<Button-1>", push_button17)
+        button_17.bind("<ButtonRelease-1>", release_button17)
+        button_18.bind("<Button-1>", push_button18)
+        button_18.bind("<ButtonRelease-1>", release_button18)
+        button_19.bind("<Button-1>", push_button19)
+        button_19.bind("<ButtonRelease-1>", release_button19)
+        button_20.bind("<Button-1>", push_button20)
+        button_20.bind("<ButtonRelease-1>", release_button20)
+        button_21.bind("<Button-1>", push_button21)
+        button_21.bind("<ButtonRelease-1>", release_button21)
+        button_22.bind("<Button-1>", push_button22)
+        button_22.bind("<ButtonRelease-1>", release_button22)
+        button_23.bind("<Button-1>", push_button23)
+        button_23.bind("<ButtonRelease-1>", release_button23)
+        button_24.bind("<Button-1>", push_button24)
+        button_24.bind("<ButtonRelease-1>", release_button24)
+        button_25.bind("<Button-1>", push_button25)
+        button_25.bind("<ButtonRelease-1>", release_button25)
+        button_26.bind("<Button-1>", push_button26)
+        button_26.bind("<ButtonRelease-1>", release_button26)
+        button_27.bind("<Button-1>", push_button27)
+        button_27.bind("<ButtonRelease-1>", release_button27)
+        button_28.bind("<Button-1>", push_button28)
+        button_28.bind("<ButtonRelease-1>", release_button28)
+        button_29.bind("<Button-1>", push_button29)
+        button_29.bind("<ButtonRelease-1>", release_button29)
+        button_30.bind("<Button-1>", push_button30)
+        button_30.bind("<ButtonRelease-1>", release_button30)
+        button_31.bind("<Button-1>", push_button31)
+        button_31.bind("<ButtonRelease-1>", release_button31)
 
         self.__root.mainloop()
 
