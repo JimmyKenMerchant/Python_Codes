@@ -13,6 +13,8 @@ gpio.setmode(gpio.BCM)
 list_gpio_setup = [16,19,20,21,26]
 gpio.setup(list_gpio_setup, gpio.OUT)
 
+version_info = "GPIO Push Button 0.9 Beta"
+indicator_info = "NOW: "
 button1_text = "Button1"
 button2_text = "Button2"
 button3_text = "Button3"
@@ -44,12 +46,15 @@ button28_text = "Button28"
 button29_text = "UP"
 button30_text = "DOWN"
 button31_text = "CLEAR"
+label0_text = ""
 
 #time.sleep(0.5)
 
 class GraphicalInterface:
     """Dependency:tkinter as tk"""
     def __init__(self, root):
+
+        print(version_info + ": START")
 
         list_gpio_button1 = [16]
         list_gpio_button2 = [19]
@@ -85,66 +90,97 @@ class GraphicalInterface:
 
         def push_button1(event):
             gpio.output(list_gpio_button1, 1)
+            label_0.config(text=indicator_info + button1_text)
         def push_button2(event):
             gpio.output(list_gpio_button2, 1)
+            label_0.config(text=indicator_info + button2_text)
         def push_button3(event):
             gpio.output(list_gpio_button3, 1)
+            label_0.config(text=indicator_info + button3_text)
         def push_button4(event):
             gpio.output(list_gpio_button4, 1)
+            label_0.config(text=indicator_info + button4_text)
         def push_button5(event):
             gpio.output(list_gpio_button5, 1)
+            label_0.config(text=indicator_info + button5_text)
         def push_button6(event):
             gpio.output(list_gpio_button6, 1)
+            label_0.config(text=indicator_info + button6_text)
         def push_button7(event):
             gpio.output(list_gpio_button7, 1)
+            label_0.config(text=indicator_info + button7_text)
         def push_button8(event):
             gpio.output(list_gpio_button8, 1)
+            label_0.config(text=indicator_info + button8_text)
         def push_button9(event):
             gpio.output(list_gpio_button9, 1)
+            label_0.config(text=indicator_info + button9_text)
         def push_button10(event):
             gpio.output(list_gpio_button10, 1)
+            label_0.config(text=indicator_info + button10_text)
         def push_button11(event):
             gpio.output(list_gpio_button11, 1)
+            label_0.config(text=indicator_info + button11_text)
         def push_button12(event):
             gpio.output(list_gpio_button12, 1)
+            label_0.config(text=indicator_info + button12_text)
         def push_button13(event):
             gpio.output(list_gpio_button13, 1)
+            label_0.config(text=indicator_info + button13_text)
         def push_button14(event):
             gpio.output(list_gpio_button14, 1)
+            label_0.config(text=indicator_info + button14_text)
         def push_button15(event):
             gpio.output(list_gpio_button15, 1)
+            label_0.config(text=indicator_info + button15_text)
         def push_button16(event):
             gpio.output(list_gpio_button16, 1)
+            label_0.config(text=indicator_info + button16_text)
         def push_button17(event):
             gpio.output(list_gpio_button17, 1)
+            label_0.config(text=indicator_info + button17_text)
         def push_button18(event):
             gpio.output(list_gpio_button18, 1)
+            label_0.config(text=indicator_info + button18_text)
         def push_button19(event):
             gpio.output(list_gpio_button19, 1)
+            label_0.config(text=indicator_info + button19_text)
         def push_button20(event):
             gpio.output(list_gpio_button20, 1)
+            label_0.config(text=indicator_info + button20_text)
         def push_button21(event):
             gpio.output(list_gpio_button21, 1)
+            label_0.config(text=indicator_info + button21_text)
         def push_button22(event):
             gpio.output(list_gpio_button22, 1)
+            label_0.config(text=indicator_info + button22_text)
         def push_button23(event):
             gpio.output(list_gpio_button23, 1)
+            label_0.config(text=indicator_info + button23_text)
         def push_button24(event):
             gpio.output(list_gpio_button24, 1)
+            label_0.config(text=indicator_info + button24_text)
         def push_button25(event):
             gpio.output(list_gpio_button25, 1)
+            label_0.config(text=indicator_info + button25_text)
         def push_button26(event):
             gpio.output(list_gpio_button26, 1)
+            label_0.config(text=indicator_info + button26_text)
         def push_button27(event):
             gpio.output(list_gpio_button27, 1)
+            label_0.config(text=indicator_info + button27_text)
         def push_button28(event):
             gpio.output(list_gpio_button28, 1)
+            label_0.config(text=indicator_info + button28_text)
         def push_button29(event):
             gpio.output(list_gpio_button29, 1)
+            label_0.config(text=indicator_info + button29_text)
         def push_button30(event):
             gpio.output(list_gpio_button30, 1)
+            label_0.config(text=indicator_info + button30_text)
         def push_button31(event):
             gpio.output(list_gpio_button31, 1)
+            label_0.config(text=indicator_info + button31_text)
 
         def release_button1(event):
             gpio.output(list_gpio_button1, 0)
@@ -210,7 +246,7 @@ class GraphicalInterface:
             gpio.output(list_gpio_button31, 0)
 
         self.__root = root
-        self.__root.title("GPIO Push Button Ver.0.9")
+        self.__root.title(version_info)
         self.__root["bg"] = "blue"
 
         frame = tk.Frame(self.__root, bg="blue")
@@ -281,8 +317,10 @@ class GraphicalInterface:
         button_30 = tk.Button(frame, width=6, height=2, text=button30_text, font=("Roboto", "20"), bg="black", fg="yellow")
         button_30.grid(row=4, column=5, columnspan=1, padx=5, pady=5, ipadx=10, ipady=10)
 
-        button_31 = tk.Button(frame, width=40, height=2, text=button31_text, font=("Roboto", "20"), bg="gray", fg="yellow")
-        button_31.grid(row=5, column=0, columnspan=6, padx=5, pady=5, ipadx=10, ipady=10)
+        button_31 = tk.Button(frame, width=18, height=2, text=button31_text, font=("Roboto", "20"), bg="gray", fg="yellow")
+        button_31.grid(row=5, column=0, columnspan=3, padx=5, pady=5, ipadx=10, ipady=10)
+        label_0 = tk.Label(frame, width=18, height=2, text=label0_text, font=("Roboto", "20"), bg="white")
+        label_0.grid(row=5, column=3, columnspan=3, padx=5, pady=5, ipadx=10, ipady=10)
 
         # Left Mouse Button
         button_1.bind("<Button-1>", push_button1)
@@ -351,7 +389,7 @@ class GraphicalInterface:
         self.__root.mainloop()
 
     def __del__(self):
-            print("END")
+        print(version_info + ": END")
 
 root = tk.Tk()
 gui = GraphicalInterface(root)
