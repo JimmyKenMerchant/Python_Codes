@@ -4,7 +4,9 @@ License: BSD-3-Clause
 
 **PURPOSE**
 
-* GPIO Push Button is aimed to use for Kenta Ishii's project on Raspberry Pi (RasPi), "Aloha Operating System".
+![Screenshot - #1](images/screenshot_1.jpg "Sreenshot of GPIO Push Button")
+
+* GPIO Push Button is GUI buttons aimed to use for Kenta Ishii's project on Raspberry Pi (RasPi), "Aloha Operating System".
 
 * Some of my projects in "Aloha Operating System" are aiming to make RasPi act like dedicated IC such as Sound Box, Synthesizer, LED Driver called "Coconut". Interfaces on Coconuts are 5-bit parallel (GPIO22-25) which 31 commands can be selected. To debug the RasPi projects, I build GPIO Push Button which is coded by Python 3.
 
@@ -12,9 +14,9 @@ License: BSD-3-Clause
 
 * Type #1 (Direct): Connect output pins (on RasPi with Raspbian) and input pins (on RasPi with Coconut). Make sure to connect GND on each RasPi because the difference of voltage on each GND makes incorrect detecting logical high or low.
 
-* Type #2 (Through Clock): If you want synchronized timing of detecting logical high on input pins, use clock generated from Coconut. To use clock, apply Enhancement-mode N-channel MOSFETs. Connect output pins to each gate, clock to each drain, input pins to each source.
-
 ![Example of Connecting - #1](images/connecting_1.jpg "Direct: RasPi 2B with Raspbian for GPIO Push Button and RasPi Zero W with Aloha Operating System Bridged by A Breadboard")
+
+* Type #2 (Through Clock): If you want synchronized timing of detecting logical high on input pins, use clock generated from Coconut. To use clock, apply Enhancement-mode N-channel MOSFETs. Connect output pins to each gate, clock to each drain, input pins to each source.
 
 ```bash
 cd ~/Desktop

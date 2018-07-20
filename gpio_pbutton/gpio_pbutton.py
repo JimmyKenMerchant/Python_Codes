@@ -13,6 +13,14 @@ gpio.setmode(gpio.BCM)
 list_gpio_setup = [16,19,20,21,26]
 gpio.setup(list_gpio_setup, gpio.OUT)
 
+# Color Settings
+color_root_bg= "black"
+color_frame_bg= "black"
+color_odd_bg= "black"
+color_even_bg= "gray"
+color_label_bg= "white"
+
+# Text Settings
 version_info = "GPIO Push Button 0.9 Beta"
 indicator_info = "NOW: "
 button1_text = "Button1"
@@ -247,79 +255,79 @@ class GraphicalInterface:
 
         self.__root = root
         self.__root.title(version_info)
-        self.__root["bg"] = "blue"
+        self.__root["bg"] = color_root_bg
 
-        frame = tk.Frame(self.__root, bg="blue")
+        frame = tk.Frame(self.__root, bg=color_frame_bg)
         frame.pack(padx=10, pady=10, ipadx=10, ipady=10, side=tk.BOTTOM)
 
-        button_1 = tk.Button(frame, width=6, height=2, text=button1_text, font=("Roboto", "20"), bg="black", fg="blue")
+        button_1 = tk.Button(frame, width=6, height=2, text=button1_text, font=("Roboto", "20"), bg=color_odd_bg, fg="blue")
         button_1.grid(row=0, column=0, columnspan=1, padx=(25,5), pady=(25,5), ipadx=10, ipady=10)
-        button_2 = tk.Button(frame, width=6, height=2, text=button2_text, font=("Roboto", "20"), bg="black", fg="green")
+        button_2 = tk.Button(frame, width=6, height=2, text=button2_text, font=("Roboto", "20"), bg=color_odd_bg, fg="green")
         button_2.grid(row=0, column=1, columnspan=1, padx=5, pady=(25,5), ipadx=10, ipady=10)
-        button_3 = tk.Button(frame, width=6, height=2, text=button3_text, font=("Roboto", "20"), bg="black", fg="red")
+        button_3 = tk.Button(frame, width=6, height=2, text=button3_text, font=("Roboto", "20"), bg=color_odd_bg, fg="red")
         button_3.grid(row=0, column=2, columnspan=1, padx=5, pady=(25,5), ipadx=10, ipady=10)
-        button_4 = tk.Button(frame, width=6, height=2, text=button4_text, font=("Roboto", "20"), bg="black", fg="cyan")
+        button_4 = tk.Button(frame, width=6, height=2, text=button4_text, font=("Roboto", "20"), bg=color_odd_bg, fg="cyan")
         button_4.grid(row=0, column=3, columnspan=1, padx=5, pady=(25,5), ipadx=10, ipady=10)
-        button_5 = tk.Button(frame, width=6, height=2, text=button5_text, font=("Roboto", "20"), bg="black", fg="magenta")
+        button_5 = tk.Button(frame, width=6, height=2, text=button5_text, font=("Roboto", "20"), bg=color_odd_bg, fg="magenta")
         button_5.grid(row=0, column=4, columnspan=1, padx=5, pady=(25,5), ipadx=10, ipady=10)
-        button_6 = tk.Button(frame, width=6, height=2, text=button6_text, font=("Roboto", "20"), bg="black", fg="yellow")
+        button_6 = tk.Button(frame, width=6, height=2, text=button6_text, font=("Roboto", "20"), bg=color_odd_bg, fg="yellow")
         button_6.grid(row=0, column=5, columnspan=1, padx=5, pady=(25,5), ipadx=10, ipady=10)
 
-        button_7 = tk.Button(frame, width=6, height=2, text=button7_text, font=("Roboto", "20"), bg="gray", fg="blue")
+        button_7 = tk.Button(frame, width=6, height=2, text=button7_text, font=("Roboto", "20"), bg=color_even_bg, fg="blue")
         button_7.grid(row=1, column=0, columnspan=1, padx=(25,5), pady=5, ipadx=10, ipady=10)
-        button_8 = tk.Button(frame, width=6, height=2, text=button8_text, font=("Roboto", "20"), bg="gray", fg="green")
+        button_8 = tk.Button(frame, width=6, height=2, text=button8_text, font=("Roboto", "20"), bg=color_even_bg, fg="green")
         button_8.grid(row=1, column=1, columnspan=1, padx=5, pady=5, ipadx=10, ipady=10)
-        button_9 = tk.Button(frame, width=6, height=2, text=button9_text, font=("Roboto", "20"), bg="gray", fg="red")
+        button_9 = tk.Button(frame, width=6, height=2, text=button9_text, font=("Roboto", "20"), bg=color_even_bg, fg="red")
         button_9.grid(row=1, column=2, columnspan=1, padx=5, pady=5, ipadx=10, ipady=10)
-        button_10 = tk.Button(frame, width=6, height=2, text=button10_text, font=("Roboto", "20"), bg="gray", fg="cyan")
+        button_10 = tk.Button(frame, width=6, height=2, text=button10_text, font=("Roboto", "20"), bg=color_even_bg, fg="cyan")
         button_10.grid(row=1, column=3, columnspan=1, padx=5, pady=5, ipadx=10, ipady=10)
-        button_11 = tk.Button(frame, width=6, height=2, text=button11_text, font=("Roboto", "20"), bg="gray", fg="magenta")
+        button_11 = tk.Button(frame, width=6, height=2, text=button11_text, font=("Roboto", "20"), bg=color_even_bg, fg="magenta")
         button_11.grid(row=1, column=4, columnspan=1, padx=5, pady=5, ipadx=10, ipady=10)
-        button_12 = tk.Button(frame, width=6, height=2, text=button12_text, font=("Roboto", "20"), bg="gray", fg="yellow")
+        button_12 = tk.Button(frame, width=6, height=2, text=button12_text, font=("Roboto", "20"), bg=color_even_bg, fg="yellow")
         button_12.grid(row=1, column=5, columnspan=1, padx=5, pady=5, ipadx=10, ipady=10)
 
-        button_13 = tk.Button(frame, width=6, height=2, text=button13_text, font=("Roboto", "20"), bg="black", fg="blue")
+        button_13 = tk.Button(frame, width=6, height=2, text=button13_text, font=("Roboto", "20"), bg=color_odd_bg, fg="blue")
         button_13.grid(row=2, column=0, columnspan=1, padx=(25,5), pady=5, ipadx=10, ipady=10)
-        button_14 = tk.Button(frame, width=6, height=2, text=button14_text, font=("Roboto", "20"), bg="black", fg="green")
+        button_14 = tk.Button(frame, width=6, height=2, text=button14_text, font=("Roboto", "20"), bg=color_odd_bg, fg="green")
         button_14.grid(row=2, column=1, columnspan=1, padx=5, pady=5, ipadx=10, ipady=10)
-        button_15 = tk.Button(frame, width=6, height=2, text=button15_text, font=("Roboto", "20"), bg="black", fg="red")
+        button_15 = tk.Button(frame, width=6, height=2, text=button15_text, font=("Roboto", "20"), bg=color_odd_bg, fg="red")
         button_15.grid(row=2, column=2, columnspan=1, padx=5, pady=5, ipadx=10, ipady=10)
-        button_16 = tk.Button(frame, width=6, height=2, text=button16_text, font=("Roboto", "20"), bg="black", fg="cyan")
+        button_16 = tk.Button(frame, width=6, height=2, text=button16_text, font=("Roboto", "20"), bg=color_odd_bg, fg="cyan")
         button_16.grid(row=2, column=3, columnspan=1, padx=5, pady=5, ipadx=10, ipady=10)
-        button_17 = tk.Button(frame, width=6, height=2, text=button17_text, font=("Roboto", "20"), bg="black", fg="magenta")
+        button_17 = tk.Button(frame, width=6, height=2, text=button17_text, font=("Roboto", "20"), bg=color_odd_bg, fg="magenta")
         button_17.grid(row=2, column=4, columnspan=1, padx=5, pady=5, ipadx=10, ipady=10)
-        button_18 = tk.Button(frame, width=6, height=2, text=button18_text, font=("Roboto", "20"), bg="black", fg="yellow")
+        button_18 = tk.Button(frame, width=6, height=2, text=button18_text, font=("Roboto", "20"), bg=color_odd_bg, fg="yellow")
         button_18.grid(row=2, column=5, columnspan=1, padx=5, pady=5, ipadx=10, ipady=10)
 
-        button_19 = tk.Button(frame, width=6, height=2, text=button19_text, font=("Roboto", "20"), bg="gray", fg="blue")
+        button_19 = tk.Button(frame, width=6, height=2, text=button19_text, font=("Roboto", "20"), bg=color_even_bg, fg="blue")
         button_19.grid(row=3, column=0, columnspan=1, padx=(25,5), pady=5, ipadx=10, ipady=10)
-        button_20 = tk.Button(frame, width=6, height=2, text=button20_text, font=("Roboto", "20"), bg="gray", fg="green")
+        button_20 = tk.Button(frame, width=6, height=2, text=button20_text, font=("Roboto", "20"), bg=color_even_bg, fg="green")
         button_20.grid(row=3, column=1, columnspan=1, padx=5, pady=5, ipadx=10, ipady=10)
-        button_21 = tk.Button(frame, width=6, height=2, text=button21_text, font=("Roboto", "20"), bg="gray", fg="red")
+        button_21 = tk.Button(frame, width=6, height=2, text=button21_text, font=("Roboto", "20"), bg=color_even_bg, fg="red")
         button_21.grid(row=3, column=2, columnspan=1, padx=5, pady=5, ipadx=10, ipady=10)
-        button_22 = tk.Button(frame, width=6, height=2, text=button22_text, font=("Roboto", "20"), bg="gray", fg="cyan")
+        button_22 = tk.Button(frame, width=6, height=2, text=button22_text, font=("Roboto", "20"), bg=color_even_bg, fg="cyan")
         button_22.grid(row=3, column=3, columnspan=1, padx=5, pady=5, ipadx=10, ipady=10)
-        button_23 = tk.Button(frame, width=6, height=2, text=button23_text, font=("Roboto", "20"), bg="gray", fg="magenta")
+        button_23 = tk.Button(frame, width=6, height=2, text=button23_text, font=("Roboto", "20"), bg=color_even_bg, fg="magenta")
         button_23.grid(row=3, column=4, columnspan=1, padx=5, pady=5, ipadx=10, ipady=10)
-        button_24 = tk.Button(frame, width=6, height=2, text=button24_text, font=("Roboto", "20"), bg="gray", fg="yellow")
+        button_24 = tk.Button(frame, width=6, height=2, text=button24_text, font=("Roboto", "20"), bg=color_even_bg, fg="yellow")
         button_24.grid(row=3, column=5, columnspan=1, padx=5, pady=5, ipadx=10, ipady=10)
 
-        button_25 = tk.Button(frame, width=6, height=2, text=button25_text, font=("Roboto", "20"), bg="black", fg="blue")
+        button_25 = tk.Button(frame, width=6, height=2, text=button25_text, font=("Roboto", "20"), bg=color_odd_bg, fg="blue")
         button_25.grid(row=4, column=0, columnspan=1, padx=(25,5), pady=5, ipadx=10, ipady=10)
-        button_26 = tk.Button(frame, width=6, height=2, text=button26_text, font=("Roboto", "20"), bg="black", fg="green")
+        button_26 = tk.Button(frame, width=6, height=2, text=button26_text, font=("Roboto", "20"), bg=color_odd_bg, fg="green")
         button_26.grid(row=4, column=1, columnspan=1, padx=5, pady=5, ipadx=10, ipady=10)
-        button_27 = tk.Button(frame, width=6, height=2, text=button27_text, font=("Roboto", "20"), bg="black", fg="red")
+        button_27 = tk.Button(frame, width=6, height=2, text=button27_text, font=("Roboto", "20"), bg=color_odd_bg, fg="red")
         button_27.grid(row=4, column=2, columnspan=1, padx=5, pady=5, ipadx=10, ipady=10)
-        button_28 = tk.Button(frame, width=6, height=2, text=button28_text, font=("Roboto", "20"), bg="black", fg="cyan")
+        button_28 = tk.Button(frame, width=6, height=2, text=button28_text, font=("Roboto", "20"), bg=color_odd_bg, fg="cyan")
         button_28.grid(row=4, column=3, columnspan=1, padx=5, pady=5, ipadx=10, ipady=10)
-        button_29 = tk.Button(frame, width=6, height=2, text=button29_text, font=("Roboto", "20"), bg="black", fg="magenta")
+        button_29 = tk.Button(frame, width=6, height=2, text=button29_text, font=("Roboto", "20"), bg=color_odd_bg, fg="magenta")
         button_29.grid(row=4, column=4, columnspan=1, padx=5, pady=5, ipadx=10, ipady=10)
-        button_30 = tk.Button(frame, width=6, height=2, text=button30_text, font=("Roboto", "20"), bg="black", fg="yellow")
+        button_30 = tk.Button(frame, width=6, height=2, text=button30_text, font=("Roboto", "20"), bg=color_odd_bg, fg="yellow")
         button_30.grid(row=4, column=5, columnspan=1, padx=5, pady=5, ipadx=10, ipady=10)
 
-        button_31 = tk.Button(frame, width=18, height=2, text=button31_text, font=("Roboto", "20"), bg="gray", fg="yellow")
+        button_31 = tk.Button(frame, width=18, height=2, text=button31_text, font=("Roboto", "20"), bg=color_even_bg, fg="yellow")
         button_31.grid(row=5, column=0, columnspan=3, padx=5, pady=5, ipadx=10, ipady=10)
-        label_0 = tk.Label(frame, width=18, height=2, text=label0_text, font=("Roboto", "20"), bg="white")
+        label_0 = tk.Label(frame, width=18, height=2, text=label0_text, font=("Roboto", "20"), bg=color_label_bg)
         label_0.grid(row=5, column=3, columnspan=3, padx=5, pady=5, ipadx=10, ipady=10)
 
         # Left Mouse Button
