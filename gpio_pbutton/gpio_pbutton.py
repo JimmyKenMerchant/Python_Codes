@@ -6,12 +6,42 @@
 
 import tkinter as tk
 import RPi.GPIO as gpio
+import sys
 import time
+
+print(sys.version)
+
+argv = sys.argv
+
+if len(argv) >= 2:
+    if argv[1] == "clk":
+        flag_clkin = True
+        width_clkin = 0.01
+    else:
+        flag_clkin = False
+else:
+    flag_clkin = False
+
+if len(argv) == 3:
+    width_clkin = float(argv[2])
 
 gpio.setmode(gpio.BCM)
 
-list_gpio_setup = [16,19,20,21,26]
-gpio.setup(list_gpio_setup, gpio.OUT)
+list_gpio_button = [] # Global
+
+if flag_clkin:
+    gpio_clkin = 13
+    gpio.setup(gpio_clkin, gpio.IN, pull_up_down=gpio.PUD_DOWN)
+    def func_falling(gpio_number):
+        global list_gpio_button
+        gpio.output(list_gpio_button, 1)
+        time.sleep(width_clkin)
+        gpio.output(list_gpio_button, 0)
+        list_gpio_button = []
+    gpio.add_event_detect(gpio_clkin, gpio.FALLING, callback=func_falling)
+
+list_gpio_output = [16,19,20,21,26]
+gpio.setup(list_gpio_output, gpio.OUT)
 
 # Color Settings
 color_root_bg= "black"
@@ -97,161 +127,286 @@ class GraphicalInterface:
         list_gpio_button31 = [16,19,20,21,26]
 
         def push_button1(event):
-            gpio.output(list_gpio_button1, 1)
+            if flag_clkin:
+                global list_gpio_button
+                list_gpio_button = list_gpio_button1
+            else:
+                gpio.output(list_gpio_button1, 1)
             label_0.config(text=indicator_info + button1_text)
         def push_button2(event):
-            gpio.output(list_gpio_button2, 1)
+            if flag_clkin:
+                global list_gpio_button
+                list_gpio_button = list_gpio_button2
+            else:
+                gpio.output(list_gpio_button2, 1)
             label_0.config(text=indicator_info + button2_text)
         def push_button3(event):
-            gpio.output(list_gpio_button3, 1)
+            if flag_clkin:
+                global list_gpio_button
+                list_gpio_button = list_gpio_button3
+            else:
+                gpio.output(list_gpio_button3, 1)
             label_0.config(text=indicator_info + button3_text)
         def push_button4(event):
-            gpio.output(list_gpio_button4, 1)
+            if flag_clkin:
+                global list_gpio_button
+                list_gpio_button = list_gpio_button4
+            else:
+                gpio.output(list_gpio_button4, 1)
             label_0.config(text=indicator_info + button4_text)
         def push_button5(event):
-            gpio.output(list_gpio_button5, 1)
+            if flag_clkin:
+                global list_gpio_button
+                list_gpio_button = list_gpio_button5
+            else:
+                gpio.output(list_gpio_button5, 1)
             label_0.config(text=indicator_info + button5_text)
         def push_button6(event):
-            gpio.output(list_gpio_button6, 1)
+            if flag_clkin:
+                global list_gpio_button
+                list_gpio_button = list_gpio_button6
+            else:
+                gpio.output(list_gpio_button6, 1)
             label_0.config(text=indicator_info + button6_text)
         def push_button7(event):
-            gpio.output(list_gpio_button7, 1)
+            if flag_clkin:
+                global list_gpio_button
+                list_gpio_button = list_gpio_button7
+            else:
+                gpio.output(list_gpio_button7, 1)
             label_0.config(text=indicator_info + button7_text)
         def push_button8(event):
-            gpio.output(list_gpio_button8, 1)
+            if flag_clkin:
+                global list_gpio_button
+                list_gpio_button = list_gpio_button8
+            else:
+                gpio.output(list_gpio_button8, 1)
             label_0.config(text=indicator_info + button8_text)
         def push_button9(event):
-            gpio.output(list_gpio_button9, 1)
+            if flag_clkin:
+                global list_gpio_button
+                list_gpio_button = list_gpio_button9
+            else:
+                gpio.output(list_gpio_button9, 1)
             label_0.config(text=indicator_info + button9_text)
         def push_button10(event):
-            gpio.output(list_gpio_button10, 1)
+            if flag_clkin:
+                global list_gpio_button
+                list_gpio_button = list_gpio_button10
+            else:
+                gpio.output(list_gpio_button10, 1)
             label_0.config(text=indicator_info + button10_text)
         def push_button11(event):
-            gpio.output(list_gpio_button11, 1)
+            if flag_clkin:
+                global list_gpio_button
+                list_gpio_button = list_gpio_button11
+            else:
+                gpio.output(list_gpio_button11, 1)
             label_0.config(text=indicator_info + button11_text)
         def push_button12(event):
-            gpio.output(list_gpio_button12, 1)
+            if flag_clkin:
+                global list_gpio_button
+                list_gpio_button = list_gpio_button12
+            else:
+                gpio.output(list_gpio_button12, 1)
             label_0.config(text=indicator_info + button12_text)
         def push_button13(event):
-            gpio.output(list_gpio_button13, 1)
+            if flag_clkin:
+                global list_gpio_button
+                list_gpio_button = list_gpio_button13
+            else:
+                gpio.output(list_gpio_button13, 1)
             label_0.config(text=indicator_info + button13_text)
         def push_button14(event):
-            gpio.output(list_gpio_button14, 1)
+            if flag_clkin:
+                global list_gpio_button
+                list_gpio_button = list_gpio_button14
+            else:
+                gpio.output(list_gpio_button14, 1)
             label_0.config(text=indicator_info + button14_text)
         def push_button15(event):
-            gpio.output(list_gpio_button15, 1)
+            if flag_clkin:
+                global list_gpio_button
+                list_gpio_button = list_gpio_button15
+            else:
+                gpio.output(list_gpio_button15, 1)
             label_0.config(text=indicator_info + button15_text)
         def push_button16(event):
-            gpio.output(list_gpio_button16, 1)
+            if flag_clkin:
+                global list_gpio_button
+                list_gpio_button = list_gpio_button16
+            else:
+                gpio.output(list_gpio_button16, 1)
             label_0.config(text=indicator_info + button16_text)
         def push_button17(event):
-            gpio.output(list_gpio_button17, 1)
+            if flag_clkin:
+                global list_gpio_button
+                list_gpio_button = list_gpio_button17
+            else:
+                gpio.output(list_gpio_button17, 1)
             label_0.config(text=indicator_info + button17_text)
         def push_button18(event):
-            gpio.output(list_gpio_button18, 1)
+            if flag_clkin:
+                global list_gpio_button
+                list_gpio_button = list_gpio_button18
+            else:
+                gpio.output(list_gpio_button18, 1)
             label_0.config(text=indicator_info + button18_text)
         def push_button19(event):
-            gpio.output(list_gpio_button19, 1)
+            if flag_clkin:
+                global list_gpio_button
+                list_gpio_button = list_gpio_button19
+            else:
+                gpio.output(list_gpio_button19, 1)
             label_0.config(text=indicator_info + button19_text)
         def push_button20(event):
-            gpio.output(list_gpio_button20, 1)
+            if flag_clkin:
+                global list_gpio_button
+                list_gpio_button = list_gpio_button20
+            else:
+                gpio.output(list_gpio_button20, 1)
             label_0.config(text=indicator_info + button20_text)
         def push_button21(event):
-            gpio.output(list_gpio_button21, 1)
+            if flag_clkin:
+                global list_gpio_button
+                list_gpio_button = list_gpio_button21
+            else:
+                gpio.output(list_gpio_button21, 1)
             label_0.config(text=indicator_info + button21_text)
         def push_button22(event):
-            gpio.output(list_gpio_button22, 1)
+            if flag_clkin:
+                global list_gpio_button
+                list_gpio_button = list_gpio_button22
+            else:
+                gpio.output(list_gpio_button22, 1)
             label_0.config(text=indicator_info + button22_text)
         def push_button23(event):
-            gpio.output(list_gpio_button23, 1)
+            if flag_clkin:
+                global list_gpio_button
+                list_gpio_button = list_gpio_button23
+            else:
+                gpio.output(list_gpio_button23, 1)
             label_0.config(text=indicator_info + button23_text)
         def push_button24(event):
-            gpio.output(list_gpio_button24, 1)
+            if flag_clkin:
+                global list_gpio_button
+                list_gpio_button = list_gpio_button24
+            else:
+                gpio.output(list_gpio_button24, 1)
             label_0.config(text=indicator_info + button24_text)
         def push_button25(event):
-            gpio.output(list_gpio_button25, 1)
+            if flag_clkin:
+                global list_gpio_button
+                list_gpio_button = list_gpio_button25
+            else:
+                gpio.output(list_gpio_button25, 1)
             label_0.config(text=indicator_info + button25_text)
         def push_button26(event):
-            gpio.output(list_gpio_button26, 1)
+            if flag_clkin:
+                global list_gpio_button
+                list_gpio_button = list_gpio_button26
+            else:
+                gpio.output(list_gpio_button26, 1)
             label_0.config(text=indicator_info + button26_text)
         def push_button27(event):
-            gpio.output(list_gpio_button27, 1)
+            if flag_clkin:
+                global list_gpio_button
+                list_gpio_button = list_gpio_button27
+            else:
+                gpio.output(list_gpio_button27, 1)
             label_0.config(text=indicator_info + button27_text)
         def push_button28(event):
-            gpio.output(list_gpio_button28, 1)
+            if flag_clkin:
+                global list_gpio_button
+                list_gpio_button = list_gpio_button28
+            else:
+                gpio.output(list_gpio_button28, 1)
             label_0.config(text=indicator_info + button28_text)
         def push_button29(event):
-            gpio.output(list_gpio_button29, 1)
+            if flag_clkin:
+                global list_gpio_button
+                list_gpio_button = list_gpio_button29
+            else:
+                gpio.output(list_gpio_button29, 1)
             label_0.config(text=indicator_info + button29_text)
         def push_button30(event):
-            gpio.output(list_gpio_button30, 1)
+            if flag_clkin:
+                global list_gpio_button
+                list_gpio_button = list_gpio_button30
+            else:
+                gpio.output(list_gpio_button30, 1)
             label_0.config(text=indicator_info + button30_text)
         def push_button31(event):
-            gpio.output(list_gpio_button31, 1)
+            if flag_clkin:
+                global list_gpio_button
+                list_gpio_button = list_gpio_button31
+            else:
+                gpio.output(list_gpio_button31, 1)
             label_0.config(text=indicator_info + button31_text)
 
-        def release_button1(event):
-            gpio.output(list_gpio_button1, 0)
-        def release_button2(event):
-            gpio.output(list_gpio_button2, 0)
-        def release_button3(event):
-            gpio.output(list_gpio_button3, 0)
-        def release_button4(event):
-            gpio.output(list_gpio_button4, 0)
-        def release_button5(event):
-            gpio.output(list_gpio_button5, 0)
-        def release_button6(event):
-            gpio.output(list_gpio_button6, 0)
-        def release_button7(event):
-            gpio.output(list_gpio_button7, 0)
-        def release_button8(event):
-            gpio.output(list_gpio_button8, 0)
-        def release_button9(event):
-            gpio.output(list_gpio_button9, 0)
-        def release_button10(event):
-            gpio.output(list_gpio_button10, 0)
-        def release_button11(event):
-            gpio.output(list_gpio_button11, 0)
-        def release_button12(event):
-            gpio.output(list_gpio_button12, 0)
-        def release_button13(event):
-            gpio.output(list_gpio_button13, 0)
-        def release_button14(event):
-            gpio.output(list_gpio_button14, 0)
-        def release_button15(event):
-            gpio.output(list_gpio_button15, 0)
-        def release_button16(event):
-            gpio.output(list_gpio_button16, 0)
-        def release_button17(event):
-            gpio.output(list_gpio_button17, 0)
-        def release_button18(event):
-            gpio.output(list_gpio_button18, 0)
-        def release_button19(event):
-            gpio.output(list_gpio_button19, 0)
-        def release_button20(event):
-            gpio.output(list_gpio_button20, 0)
-        def release_button21(event):
-            gpio.output(list_gpio_button21, 0)
-        def release_button22(event):
-            gpio.output(list_gpio_button22, 0)
-        def release_button23(event):
-            gpio.output(list_gpio_button23, 0)
-        def release_button24(event):
-            gpio.output(list_gpio_button24, 0)
-        def release_button25(event):
-            gpio.output(list_gpio_button25, 0)
-        def release_button26(event):
-            gpio.output(list_gpio_button26, 0)
-        def release_button27(event):
-            gpio.output(list_gpio_button27, 0)
-        def release_button28(event):
-            gpio.output(list_gpio_button28, 0)
-        def release_button29(event):
-            gpio.output(list_gpio_button29, 0)
-        def release_button30(event):
-            gpio.output(list_gpio_button30, 0)
-        def release_button31(event):
-            gpio.output(list_gpio_button31, 0)
+        if not flag_clkin:
+            def release_button1(event):
+                gpio.output(list_gpio_button1, 0)
+            def release_button2(event):
+                gpio.output(list_gpio_button2, 0)
+            def release_button3(event):
+                gpio.output(list_gpio_button3, 0)
+            def release_button4(event):
+                gpio.output(list_gpio_button4, 0)
+            def release_button5(event):
+                gpio.output(list_gpio_button5, 0)
+            def release_button6(event):
+                gpio.output(list_gpio_button6, 0)
+            def release_button7(event):
+                gpio.output(list_gpio_button7, 0)
+            def release_button8(event):
+                gpio.output(list_gpio_button8, 0)
+            def release_button9(event):
+                gpio.output(list_gpio_button9, 0)
+            def release_button10(event):
+                gpio.output(list_gpio_button10, 0)
+            def release_button11(event):
+                gpio.output(list_gpio_button11, 0)
+            def release_button12(event):
+                gpio.output(list_gpio_button12, 0)
+            def release_button13(event):
+                gpio.output(list_gpio_button13, 0)
+            def release_button14(event):
+                gpio.output(list_gpio_button14, 0)
+            def release_button15(event):
+                gpio.output(list_gpio_button15, 0)
+            def release_button16(event):
+                gpio.output(list_gpio_button16, 0)
+            def release_button17(event):
+                gpio.output(list_gpio_button17, 0)
+            def release_button18(event):
+                gpio.output(list_gpio_button18, 0)
+            def release_button19(event):
+                gpio.output(list_gpio_button19, 0)
+            def release_button20(event):
+                gpio.output(list_gpio_button20, 0)
+            def release_button21(event):
+                gpio.output(list_gpio_button21, 0)
+            def release_button22(event):
+                gpio.output(list_gpio_button22, 0)
+            def release_button23(event):
+                gpio.output(list_gpio_button23, 0)
+            def release_button24(event):
+                gpio.output(list_gpio_button24, 0)
+            def release_button25(event):
+                gpio.output(list_gpio_button25, 0)
+            def release_button26(event):
+                gpio.output(list_gpio_button26, 0)
+            def release_button27(event):
+                gpio.output(list_gpio_button27, 0)
+            def release_button28(event):
+                gpio.output(list_gpio_button28, 0)
+            def release_button29(event):
+                gpio.output(list_gpio_button29, 0)
+            def release_button30(event):
+                gpio.output(list_gpio_button30, 0)
+            def release_button31(event):
+                gpio.output(list_gpio_button31, 0)
 
         self.__root = root
         self.__root.title(version_info)
@@ -332,67 +487,69 @@ class GraphicalInterface:
 
         # Left Mouse Button
         button_1.bind("<Button-1>", push_button1)
-        button_1.bind("<ButtonRelease-1>", release_button1)
         button_2.bind("<Button-1>", push_button2)
-        button_2.bind("<ButtonRelease-1>", release_button2)
         button_3.bind("<Button-1>", push_button3)
-        button_3.bind("<ButtonRelease-1>", release_button3)
         button_4.bind("<Button-1>", push_button4)
-        button_4.bind("<ButtonRelease-1>", release_button4)
         button_5.bind("<Button-1>", push_button5)
-        button_5.bind("<ButtonRelease-1>", release_button5)
         button_6.bind("<Button-1>", push_button6)
-        button_6.bind("<ButtonRelease-1>", release_button6)
         button_7.bind("<Button-1>", push_button7)
-        button_7.bind("<ButtonRelease-1>", release_button7)
         button_8.bind("<Button-1>", push_button8)
-        button_8.bind("<ButtonRelease-1>", release_button8)
         button_9.bind("<Button-1>", push_button9)
-        button_9.bind("<ButtonRelease-1>", release_button9)
         button_10.bind("<Button-1>", push_button10)
-        button_10.bind("<ButtonRelease-1>", release_button10)
         button_11.bind("<Button-1>", push_button11)
-        button_11.bind("<ButtonRelease-1>", release_button11)
         button_12.bind("<Button-1>", push_button12)
-        button_12.bind("<ButtonRelease-1>", release_button12)
         button_13.bind("<Button-1>", push_button13)
-        button_13.bind("<ButtonRelease-1>", release_button13)
         button_14.bind("<Button-1>", push_button14)
-        button_14.bind("<ButtonRelease-1>", release_button14)
         button_15.bind("<Button-1>", push_button15)
-        button_15.bind("<ButtonRelease-1>", release_button15)
         button_16.bind("<Button-1>", push_button16)
-        button_16.bind("<ButtonRelease-1>", release_button16)
         button_17.bind("<Button-1>", push_button17)
-        button_17.bind("<ButtonRelease-1>", release_button17)
         button_18.bind("<Button-1>", push_button18)
-        button_18.bind("<ButtonRelease-1>", release_button18)
         button_19.bind("<Button-1>", push_button19)
-        button_19.bind("<ButtonRelease-1>", release_button19)
         button_20.bind("<Button-1>", push_button20)
-        button_20.bind("<ButtonRelease-1>", release_button20)
         button_21.bind("<Button-1>", push_button21)
-        button_21.bind("<ButtonRelease-1>", release_button21)
         button_22.bind("<Button-1>", push_button22)
-        button_22.bind("<ButtonRelease-1>", release_button22)
         button_23.bind("<Button-1>", push_button23)
-        button_23.bind("<ButtonRelease-1>", release_button23)
         button_24.bind("<Button-1>", push_button24)
-        button_24.bind("<ButtonRelease-1>", release_button24)
         button_25.bind("<Button-1>", push_button25)
-        button_25.bind("<ButtonRelease-1>", release_button25)
         button_26.bind("<Button-1>", push_button26)
-        button_26.bind("<ButtonRelease-1>", release_button26)
         button_27.bind("<Button-1>", push_button27)
-        button_27.bind("<ButtonRelease-1>", release_button27)
         button_28.bind("<Button-1>", push_button28)
-        button_28.bind("<ButtonRelease-1>", release_button28)
         button_29.bind("<Button-1>", push_button29)
-        button_29.bind("<ButtonRelease-1>", release_button29)
         button_30.bind("<Button-1>", push_button30)
-        button_30.bind("<ButtonRelease-1>", release_button30)
         button_31.bind("<Button-1>", push_button31)
-        button_31.bind("<ButtonRelease-1>", release_button31)
+
+        if not flag_clkin:
+            button_1.bind("<ButtonRelease-1>", release_button1)
+            button_2.bind("<ButtonRelease-1>", release_button2)
+            button_3.bind("<ButtonRelease-1>", release_button3)
+            button_4.bind("<ButtonRelease-1>", release_button4)
+            button_5.bind("<ButtonRelease-1>", release_button5)
+            button_6.bind("<ButtonRelease-1>", release_button6)
+            button_7.bind("<ButtonRelease-1>", release_button7)
+            button_8.bind("<ButtonRelease-1>", release_button8)
+            button_9.bind("<ButtonRelease-1>", release_button9)
+            button_10.bind("<ButtonRelease-1>", release_button10)
+            button_11.bind("<ButtonRelease-1>", release_button11)
+            button_12.bind("<ButtonRelease-1>", release_button12)
+            button_13.bind("<ButtonRelease-1>", release_button13)
+            button_14.bind("<ButtonRelease-1>", release_button14)
+            button_15.bind("<ButtonRelease-1>", release_button15)
+            button_16.bind("<ButtonRelease-1>", release_button16)
+            button_17.bind("<ButtonRelease-1>", release_button17)
+            button_18.bind("<ButtonRelease-1>", release_button18)
+            button_19.bind("<ButtonRelease-1>", release_button19)
+            button_20.bind("<ButtonRelease-1>", release_button20)
+            button_21.bind("<ButtonRelease-1>", release_button21)
+            button_22.bind("<ButtonRelease-1>", release_button22)
+            button_23.bind("<ButtonRelease-1>", release_button23)
+            button_24.bind("<ButtonRelease-1>", release_button24)
+            button_25.bind("<ButtonRelease-1>", release_button25)
+            button_26.bind("<ButtonRelease-1>", release_button26)
+            button_27.bind("<ButtonRelease-1>", release_button27)
+            button_28.bind("<ButtonRelease-1>", release_button28)
+            button_29.bind("<ButtonRelease-1>", release_button29)
+            button_30.bind("<ButtonRelease-1>", release_button30)
+            button_31.bind("<ButtonRelease-1>", release_button31)
 
         self.__root.mainloop()
 

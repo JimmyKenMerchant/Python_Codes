@@ -19,6 +19,7 @@ License: BSD-3-Clause
 * Connecting Type #2 (Through Clock): If you want synchronized timing of detecting logical high on input pins, use clock generated from Coconut. To use clock, apply Enhancement-mode N-channel MOSFETs. Connect output pins to each gate, clock to each drain, input pins to each source.
 
 * Clone my project and run the python file in a terminal of Raspbian. Installing Git is needed in advance.
+
 ```bash
 cd ~/Desktop
 git clone https://github.com/JimmyKenMerchant/Python_Code
