@@ -18,7 +18,7 @@ License: BSD-3-Clause
 
 * Connecting Type #2 (Clock Through): If you want synchronized timing of detecting logical high on input pins, use clock generated from Coconut. To use clock, apply Enhancement-mode N-channel MOSFETs. Connect output pins to each gate, clock to each drain, input pins to each source.
 
-* Connecting Type #3 (Clock Trigger): You can flash outputs on the time of the falling edge of an external clock. In addition to connection of Type #1, connect with the external clock of Coconuts and GPIO13. Caution that the GUI freezes if you don't connect with the clock and GPIO13. Use force stop (`Ctrl+c` and so on) on the terminal you have run this script.
+* Connecting Type #3 (Clock Trigger): You can flash outputs on the time of the falling edge of an external clock. In addition to connection of Type #1, connect with the external clock of Coconuts and GPIO13. Caution that the GUI freezes if you don't connect with the clock and GPIO13. Use force stop (`Ctrl+c`) on the terminal you have run this script.
 
 * Clone my project and run the python file in a terminal of Raspbian. Installing Git is needed in advance.
 
