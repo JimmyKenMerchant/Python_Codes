@@ -8,40 +8,7 @@ import tkinter as tk
 import RPi.GPIO as gpio
 import sys
 import time
-
-print(sys.version)
-
-argv = sys.argv
-
-if len(argv) >= 2:
-    if argv[1] == "clk":
-        flag_clkin = True
-        width_clkin = 0.01
-    else:
-        flag_clkin = False
-else:
-    flag_clkin = False
-
-if len(argv) == 3:
-    width_clkin = float(argv[2])
-
-gpio.setmode(gpio.BCM)
-
-list_gpio_button = [] # Global
-
-if flag_clkin:
-    gpio_clkin = 13
-    gpio.setup(gpio_clkin, gpio.IN, pull_up_down=gpio.PUD_DOWN)
-    def func_falling(gpio_number):
-        global list_gpio_button
-        gpio.output(list_gpio_button, 1)
-        time.sleep(width_clkin)
-        gpio.output(list_gpio_button, 0)
-        list_gpio_button = []
-    gpio.add_event_detect(gpio_clkin, gpio.FALLING, callback=func_falling)
-
-list_gpio_output = [16,19,20,21,26]
-gpio.setup(list_gpio_output, gpio.OUT)
+import signal
 
 # Color Settings
 color_root_bg= "black"
@@ -128,218 +95,187 @@ class GraphicalInterface:
 
         def push_button1(event):
             if flag_clkin:
-                global list_gpio_button
-                list_gpio_button = list_gpio_button1
+                self.clocksync(list_gpio_button1)
             else:
                 gpio.output(list_gpio_button1, 1)
             label_0.config(text=indicator_info + button1_text)
         def push_button2(event):
             if flag_clkin:
-                global list_gpio_button
-                list_gpio_button = list_gpio_button2
+                self.clocksync(list_gpio_button2)
             else:
                 gpio.output(list_gpio_button2, 1)
             label_0.config(text=indicator_info + button2_text)
         def push_button3(event):
             if flag_clkin:
-                global list_gpio_button
-                list_gpio_button = list_gpio_button3
+                self.clocksync(list_gpio_button3)
             else:
                 gpio.output(list_gpio_button3, 1)
             label_0.config(text=indicator_info + button3_text)
         def push_button4(event):
             if flag_clkin:
-                global list_gpio_button
-                list_gpio_button = list_gpio_button4
+                self.clocksync(list_gpio_button4)
             else:
                 gpio.output(list_gpio_button4, 1)
             label_0.config(text=indicator_info + button4_text)
         def push_button5(event):
             if flag_clkin:
-                global list_gpio_button
-                list_gpio_button = list_gpio_button5
+                self.clocksync(list_gpio_button5)
             else:
                 gpio.output(list_gpio_button5, 1)
             label_0.config(text=indicator_info + button5_text)
         def push_button6(event):
             if flag_clkin:
-                global list_gpio_button
-                list_gpio_button = list_gpio_button6
+                self.clocksync(list_gpio_button6)
             else:
                 gpio.output(list_gpio_button6, 1)
             label_0.config(text=indicator_info + button6_text)
         def push_button7(event):
             if flag_clkin:
-                global list_gpio_button
-                list_gpio_button = list_gpio_button7
+                self.clocksync(list_gpio_button7)
             else:
                 gpio.output(list_gpio_button7, 1)
             label_0.config(text=indicator_info + button7_text)
         def push_button8(event):
             if flag_clkin:
-                global list_gpio_button
-                list_gpio_button = list_gpio_button8
+                self.clocksync(list_gpio_button8)
             else:
                 gpio.output(list_gpio_button8, 1)
             label_0.config(text=indicator_info + button8_text)
         def push_button9(event):
             if flag_clkin:
-                global list_gpio_button
-                list_gpio_button = list_gpio_button9
+                self.clocksync(list_gpio_button9)
             else:
                 gpio.output(list_gpio_button9, 1)
             label_0.config(text=indicator_info + button9_text)
         def push_button10(event):
             if flag_clkin:
-                global list_gpio_button
-                list_gpio_button = list_gpio_button10
+                self.clocksync(list_gpio_button10)
             else:
                 gpio.output(list_gpio_button10, 1)
             label_0.config(text=indicator_info + button10_text)
         def push_button11(event):
             if flag_clkin:
-                global list_gpio_button
-                list_gpio_button = list_gpio_button11
+                self.clocksync(list_gpio_button11)
             else:
                 gpio.output(list_gpio_button11, 1)
             label_0.config(text=indicator_info + button11_text)
         def push_button12(event):
             if flag_clkin:
-                global list_gpio_button
-                list_gpio_button = list_gpio_button12
+                self.clocksync(list_gpio_button12)
             else:
                 gpio.output(list_gpio_button12, 1)
             label_0.config(text=indicator_info + button12_text)
         def push_button13(event):
             if flag_clkin:
-                global list_gpio_button
-                list_gpio_button = list_gpio_button13
+                self.clocksync(list_gpio_button13)
             else:
                 gpio.output(list_gpio_button13, 1)
             label_0.config(text=indicator_info + button13_text)
         def push_button14(event):
             if flag_clkin:
-                global list_gpio_button
-                list_gpio_button = list_gpio_button14
+                self.clocksync(list_gpio_button14)
             else:
                 gpio.output(list_gpio_button14, 1)
             label_0.config(text=indicator_info + button14_text)
         def push_button15(event):
             if flag_clkin:
-                global list_gpio_button
-                list_gpio_button = list_gpio_button15
+                self.clocksync(list_gpio_button15)
             else:
                 gpio.output(list_gpio_button15, 1)
             label_0.config(text=indicator_info + button15_text)
         def push_button16(event):
             if flag_clkin:
-                global list_gpio_button
-                list_gpio_button = list_gpio_button16
+                self.clocksync(list_gpio_button16)
             else:
                 gpio.output(list_gpio_button16, 1)
             label_0.config(text=indicator_info + button16_text)
         def push_button17(event):
             if flag_clkin:
-                global list_gpio_button
-                list_gpio_button = list_gpio_button17
+                self.clocksync(list_gpio_button17)
             else:
                 gpio.output(list_gpio_button17, 1)
             label_0.config(text=indicator_info + button17_text)
         def push_button18(event):
             if flag_clkin:
-                global list_gpio_button
-                list_gpio_button = list_gpio_button18
+                self.clocksync(list_gpio_button18)
             else:
                 gpio.output(list_gpio_button18, 1)
             label_0.config(text=indicator_info + button18_text)
         def push_button19(event):
             if flag_clkin:
-                global list_gpio_button
-                list_gpio_button = list_gpio_button19
+                self.clocksync(list_gpio_button19)
             else:
                 gpio.output(list_gpio_button19, 1)
             label_0.config(text=indicator_info + button19_text)
         def push_button20(event):
             if flag_clkin:
-                global list_gpio_button
-                list_gpio_button = list_gpio_button20
+                self.clocksync(list_gpio_button20)
             else:
                 gpio.output(list_gpio_button20, 1)
             label_0.config(text=indicator_info + button20_text)
         def push_button21(event):
             if flag_clkin:
-                global list_gpio_button
-                list_gpio_button = list_gpio_button21
+                self.clocksync(list_gpio_button21)
             else:
                 gpio.output(list_gpio_button21, 1)
             label_0.config(text=indicator_info + button21_text)
         def push_button22(event):
             if flag_clkin:
-                global list_gpio_button
-                list_gpio_button = list_gpio_button22
+                self.clocksync(list_gpio_button22)
             else:
                 gpio.output(list_gpio_button22, 1)
             label_0.config(text=indicator_info + button22_text)
         def push_button23(event):
             if flag_clkin:
-                global list_gpio_button
-                list_gpio_button = list_gpio_button23
+                self.clocksync(list_gpio_button23)
             else:
                 gpio.output(list_gpio_button23, 1)
             label_0.config(text=indicator_info + button23_text)
         def push_button24(event):
             if flag_clkin:
-                global list_gpio_button
-                list_gpio_button = list_gpio_button24
+                self.clocksync(list_gpio_button24)
             else:
                 gpio.output(list_gpio_button24, 1)
             label_0.config(text=indicator_info + button24_text)
         def push_button25(event):
             if flag_clkin:
-                global list_gpio_button
-                list_gpio_button = list_gpio_button25
+                self.clocksync(list_gpio_button25)
             else:
                 gpio.output(list_gpio_button25, 1)
             label_0.config(text=indicator_info + button25_text)
         def push_button26(event):
             if flag_clkin:
-                global list_gpio_button
-                list_gpio_button = list_gpio_button26
+                self.clocksync(list_gpio_button26)
             else:
                 gpio.output(list_gpio_button26, 1)
             label_0.config(text=indicator_info + button26_text)
         def push_button27(event):
             if flag_clkin:
-                global list_gpio_button
-                list_gpio_button = list_gpio_button27
+                self.clocksync(list_gpio_button27)
             else:
                 gpio.output(list_gpio_button27, 1)
             label_0.config(text=indicator_info + button27_text)
         def push_button28(event):
             if flag_clkin:
-                global list_gpio_button
-                list_gpio_button = list_gpio_button28
+                self.clocksync(list_gpio_button28)
             else:
                 gpio.output(list_gpio_button28, 1)
             label_0.config(text=indicator_info + button28_text)
         def push_button29(event):
             if flag_clkin:
-                global list_gpio_button
-                list_gpio_button = list_gpio_button29
+                self.clocksync(list_gpio_button29)
             else:
                 gpio.output(list_gpio_button29, 1)
             label_0.config(text=indicator_info + button29_text)
         def push_button30(event):
             if flag_clkin:
-                global list_gpio_button
-                list_gpio_button = list_gpio_button30
+                self.clocksync(list_gpio_button30)
             else:
                 gpio.output(list_gpio_button30, 1)
             label_0.config(text=indicator_info + button30_text)
         def push_button31(event):
             if flag_clkin:
-                global list_gpio_button
-                list_gpio_button = list_gpio_button31
+                self.clocksync(list_gpio_button31)
             else:
                 gpio.output(list_gpio_button31, 1)
             label_0.config(text=indicator_info + button31_text)
@@ -553,8 +489,48 @@ class GraphicalInterface:
 
         self.__root.mainloop()
 
+    def clocksync(self, list_gpio_button):
+        while True:
+            if gpio.input(gpio_clkin): # High
+                break 
+        while True:
+            if not gpio.input(gpio_clkin): # Low
+                gpio.output(list_gpio_button, 1)
+                break 
+        while True:
+            if gpio.input(gpio_clkin): # High
+                gpio.output(list_gpio_button, 0)
+                break 
+
+
     def __del__(self):
         print(version_info + ": END")
+
+argv = sys.argv
+
+print(sys.version)
+
+gpio.setmode(gpio.BCM)
+
+if len(argv) >= 2:
+    if argv[1] == "clk":
+        flag_clkin = True
+        gpio_clkin = 13
+        gpio.setup(gpio_clkin, gpio.IN, pull_up_down=gpio.PUD_DOWN)
+    else:
+        flag_clkin = False
+else:
+    flag_clkin = False
+
+list_gpio_output = [16,19,20,21,26]
+gpio.setup(list_gpio_output, gpio.OUT)
+
+def handle_sigint(signum, frame):
+    print(version_info + ": Force Stop")
+    gpio.cleanup()
+    sys.exit(0)
+
+signal.signal(signal.SIGINT, handle_sigint)
 
 root = tk.Tk()
 gui = GraphicalInterface(root)
