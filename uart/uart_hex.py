@@ -2,7 +2,7 @@
 
 # Author: Kenta Ishii
 # SPDX short identifier: BSD-3-Clause
-# ./uart.py example.txt /dev/serial0 115200 0.01
+# ./uart_hex.py /dev/serial0 115200 0.01
 
 import sys
 import serial
@@ -98,18 +98,8 @@ print (sys.version)
 argv = sys.argv
 print (argv[0]) # File Name
 
-fsrc = open( argv[1], "rb") # Read Only With Raw Data (Integer)
-text_all = fsrc.read()
-if len(argv) == 6: # If Sixth Argument Exists (File to Write)
-    fdst = open( argv[5], "w+") # Write Only With UTF-8
-else:
-    fdst = None;
-
-uart = serial.Serial(port = argv[2], baudrate = int(argv[3]), timeout = float(argv[4]))
-uartconsole = UartConsole(uart, fdst)
-uartconsole.send(text_all, True, False)
-uartconsole.receive(True, True)
-uartconsole.input()
-uartconsole.receive(True, True)
+uart = serial.Serial(port = argv[1], baudrate = int(argv[2]), timeout = float(argv[3]))
+uartconsole = UartConsole(uart, None)
+uartconsole.input_hex()
 del uartconsole
 
