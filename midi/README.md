@@ -29,6 +29,7 @@ qjackctl
 cd ~/Desktop
 git clone https://github.com/JimmyKenMerchant/Python_Codes
 cd Python_Codes/midi
+chmod u+x midi2serial.py
 # In this case, the baud rate of UART is 115200 bps, 11520 bytes per second; UART needs 2 bits for start and stop bits.
 ./midi2serial.py /dev/serial0 115200 0.01
 ```
