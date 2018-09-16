@@ -27,9 +27,9 @@ def process(frames):
     for offset, data in midiport.incoming_midi_events():
         data = binascii.hexlify(data) # Buffer Object (Binary) to String of Ascii Characters
         bytes = [] # Empty List
-        for i in range(0, len(data) >> 1, 1): # If 3 bytes, len(data) will be 6. Divided By 2 through Logical Shift Left.
+        for i in range(0, len(data) >> 1, 1): # If 3 bytes, len(data) will be 6. Divided By 2 through Logical Shift Right.
             # data[start(inclusively):end(exclusively)], String to 8-bit Binary
-            start = i << 1  # 0,2,4,6...
+            start = i << 1  # 0,2,4,6... Multiplied By 2 through Logical Shift Left.
             end = start + 2 # 2,4,6,8...
             bytes.append(int(data[start:end], 16).to_bytes(1, "little"))
 
