@@ -25,12 +25,13 @@ midiport = midiclient.midi_inports.register("input")
 @midiclient.set_process_callback
 def process(frames):
     for offset, data in midiport.incoming_midi_events():
-        data = binascii.hexlify(data) # Buffer Object to String of Ascii Characters
-        length = len(data)
-        bytes = [int(data[0:2], 16).to_bytes(1, "little"),
-                 int(data[2:4], 16).to_bytes(1, "little")] # [start(inclusively):end(exclusively)], String to 8-bit Binary
-        if length > 4: # Third Bytes
-            bytes.append(int(data[4:6], 16).to_bytes(1, "little"))
+        data = binascii.hexlify(data) # Buffer Object (Binary) to String of Ascii Characters
+        bytes = [] # Empty List
+        for i in range(0, len(data) >> 1, 1): # If 3 bytes, len(data) will be 6. Divided By 2 through Logical Shift Left.
+            # data[start(inclusively):end(exclusively)], String to 8-bit Binary
+            start = i << 1  # 0,2,4,6...
+            end = start + 2 # 2,4,6,8...
+            bytes.append(int(data[start:end], 16).to_bytes(1, "little"))
 
         #print(offset, end="\n")
         #print(data, end="\n")

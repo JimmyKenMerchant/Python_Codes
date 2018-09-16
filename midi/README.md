@@ -23,7 +23,7 @@ qjackctl
 # Push "Start"
 ```
 
-* Install This Project and Run 
+* Install This Project and Run
 
 ```bash
 cd ~/Desktop
