@@ -34,9 +34,11 @@ chmod u+x midi2serial.py
 ./midi2serial.py /dev/serial0 115200 0.01
 ```
 
-* Back to QjackCtl, go to "Connect" and select "MIDI" tab. You can watch "MIDI-TO-SERIAL" in the right side box.
+* Back to QjackCtl, click "Connect" button to go to "Connections" menu, and select "MIDI" tab. You can check "MIDI-TO-SERIAL" in the right side box, "Writable Clients / Input Ports".
 
-* If you want to bridge ALSA MIDI (System MIDI) and JACK MIDI, add `a2jmidid -e &` in QjackCtl (go to "Setup" and select "Options" tab. Check "Execute script after Startup", and write `a2jmidid -e &` in the textbox).
+* Select both a port you want to connect in "Readable Clients / Output Ports" and "MIDI-TO-SERIAL" in "Writable Clients / Input Ports", then click "Connect" button. A line will be drawn to show the connection of two ports.
+
+* If you want to bridge ALSA MIDI (System MIDI) and JACK MIDI, add `a2jmidid -e &` in QjackCtl (go to "Setup" and select "Options" tab. Check "Execute script after Startup", and write `a2jmidid -e &` in the textbox). You can check MIDI ports, such as USB MIDI keyboard, in "a2j" at "MIDI" tab of "Connections" menu (USB MIDI keyboard can be checked in the left side box, "Readable Clients / Output Ports").
 
 **Information about Licenses**
 
