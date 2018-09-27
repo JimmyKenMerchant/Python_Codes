@@ -18,19 +18,13 @@ prompt = "\n**Press Enter to Quit**"
 print (sys.version)
 argv = sys.argv
 
-# Set MIDI Channel for Psuedo Polyphonic Function (PPP Channel).
-# Psuedo polyphonic function sends MIDI message to an inactive monophonic device to make a chord on a device, such as keyboard, etc.
-# If transit MIDI channel matches PPP Channel, PPP function searches inactive monophonic devices.
-# The MIDI channel is changed from PPP Channel to PPP Channel + device ID.
-# Device IDs are assigned from 1 to the number of monophonic devices.
+# Set MIDI Channel for Psuedo Polyphonic Function (PPP Channel)
 if len(argv) >= 5:
     ppp_midichannel = int(argv[4]) - 1
 else:
     ppp_midichannel = None # None Type
 
 # Set Number of Monophonic Devices for Pseudo Polyphonic Function
-# If Baud Rate Is 115200, I Recommend that you apply up to 3 devices
-# because 115200 includes 3 times as many as 31250, MIDI Baud Rate.
 if len(argv) >= 6:
     ppp_numberdevices = int(argv[5])
     # Make Table to Check Active/Inactive Monophonic Devices and Current Tone Number
