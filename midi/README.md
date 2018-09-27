@@ -30,9 +30,11 @@ cd ~/Desktop
 git clone https://github.com/JimmyKenMerchant/Python_Codes
 cd Python_Codes/midi
 chmod u+x midi2serial.py
+# Check Arguments
+./midi2serial.py -h
 # In this case, the baud rate of UART is 115200 bps, 11520 bytes per second; UART needs 2 bits for start and stop bits.
 # 0.01 (seconds) is read timeout value (3rd argument)
-./midi2serial.py /dev/serial0 115200 0.01
+./midi2serial.py -s /dev/serial0 -b 115200 -t 0.01
 ```
 
 * Back to QjackCtl, click "Connect" button to go to "Connections" menu, and select "MIDI" tab. You can check "MIDI-TO-SERIAL" in the right side box, "Writable Clients / Input Ports".
@@ -41,7 +43,7 @@ chmod u+x midi2serial.py
 
 * If you want to bridge ALSA MIDI (System MIDI) and JACK MIDI, add `a2jmidid -e &` in QjackCtl (go to "Setup" and select "Options" tab. Check "Execute script after Startup", and write `a2jmidid -e &` in the textbox). You can check MIDI ports, such as USB MIDI keyboard, in "a2j" at "MIDI" tab of "Connections" menu (USB MIDI keyboard can be checked in the left side box, "Readable Clients / Output Ports").
 
-* (Optional) Psuedo polyphonic function
+* (Optional) Psuedo polyphonic (PPP) function
 	* Psuedo polyphonic function sends MIDI message to an inactive monophonic device to make a chord on a device, such as keyboard, etc.
 	* If transit MIDI channel matches PPP channel, PPP function searches inactive monophonic devices.
 	* The MIDI channel is changed from PPP channel to PPP channel + device ID number if any inactive monophonic device is searched.
@@ -49,10 +51,10 @@ chmod u+x midi2serial.py
 	* Monophonic devices need to be set these own channels from the next of PPP channel in advance.
 
 ```bash
-# In this case, ppp channel is set to 1 (3rd argument), and the number of monophonic devices is 3 (4th argument).
+# In this case, enable PPP (4th argument), PPP channel is set to 1 (5th argument), and the number of monophonic devices is 3 (6th argument).
 # If Baud Rate Is 115200, I Recommend that you apply up to 3 devices
 # because 115200 includes 3 times as many as 31250, MIDI Baud Rate.
-./midi2serial.py /dev/serial0 115200 0.01 1 3
+./midi2serial.py -s /dev/serial0 -b 115200 -t 0.01 -p -c 1 -n 3
 ```
 
 **Information about Licenses**

@@ -2,13 +2,31 @@
 
 # Author: Kenta Ishii
 # SPDX short identifier: BSD-3-Clause
-# ./midi2serial.py /dev/serial0 115200 0.01
+# ./midi2serial.py -s /dev/serial0 -b 115200 -t 0.01
 
 import sys
+import argparse
 import serial
 import jack
 import binascii
 import signal
+
+parser = argparse.ArgumentParser()
+parser.add_argument("-s", "--serial", nargs=1, metavar="STRING", required=True,
+                    help="port of serial interface")
+parser.add_argument("-b", "--baudrate", nargs=1, metavar="INT", required=True,
+                    help="baud rate", type=int)
+parser.add_argument("-t", "--timeout", nargs=1, metavar="FLOAT", required=True,
+                    help="read time out", type=float)
+parser.add_argument("-p", "--pppenable",
+                    help="flag of enabling pseudo polyphonic channel", action="store_true")
+parser.add_argument("-n", "--pppnumber", nargs=1, metavar="INT",
+                    help="number of monophonic devices for psuedo polyphonic channel", type=int)
+parser.add_argument("-c", "--pppchannel", nargs=1, metavar="INT",
+                    help="psuedo polyphonic MIDI channel", type=int)
+args= parser.parse_args()
+#print(args)
+#argv = sys.argv
 
 __name = "JACK Audio Connection Kit to Serial Interface Bridge"
 __version = "1.0.0"
@@ -16,27 +34,23 @@ version_info = __name + " " + __version
 prompt = "\n**Press Enter to Quit**"
 
 print (sys.version)
-argv = sys.argv
 
 # Set MIDI Channel for Psuedo Polyphonic Function (PPP Channel)
-if len(argv) >= 5:
-    ppp_midichannel = int(argv[4]) - 1
-else:
-    ppp_midichannel = None # None Type
-
 # Set Number of Monophonic Devices for Pseudo Polyphonic Function
-if len(argv) >= 6:
-    ppp_numberdevices = int(argv[5])
+if args.pppenable is True:
+    ppp_midichannel = args.pppchannel[0] - 1
+    ppp_numberdevices = args.pppnumber[0]
     # Make Table to Check Active/Inactive Monophonic Devices and Current Tone Number
     ppp_devices = []
     for i in range(0, ppp_numberdevices, 1):
         ppp_devices.append(0x80) # MIDI Tone Number Is Up to 127 (0x7F)
 else:
+    ppp_midichannel = None # None Type
     ppp_numberdevices = None # None Type
 
 # Set UART Connection
 try:
-    uart = serial.Serial(port = argv[1], baudrate = int(argv[2]), timeout = float(argv[3]))
+    uart = serial.Serial(port = args.serial[0], baudrate = args.baudrate[0], timeout = args.timeout[0])
 except serial.SerialException as e:
     print(version_info + ": Error on UART Settings")
     sys.exit(1)
