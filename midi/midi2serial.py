@@ -10,6 +10,7 @@ import serial
 import jack
 import binascii
 import signal
+import time
 
 parser = argparse.ArgumentParser()
 parser.add_argument("-s", "--serial", nargs=1, metavar="STRING", required=True,
@@ -24,12 +25,16 @@ parser.add_argument("-n", "--pppnumber", nargs=1, metavar="INT",
                     help="number of monophonic devices for psuedo polyphonic channel", type=int)
 parser.add_argument("-c", "--pppchannel", nargs=1, metavar="INT",
                     help="psuedo polyphonic MIDI channel", type=int)
+parser.add_argument("-i", "--pppinvisible",
+                    help="visible only polyphonic MIDI channel, and invisible monophonic devices from output devices", action="store_true")
+parser.add_argument("-v", "--pppvoices", nargs=1, metavar="INT", default=[1],
+                    help="number of voices in each monophonic devices, e.g., if the device has two voices, '-v 2'", type=int)
 args= parser.parse_args()
 #print(args)
 #argv = sys.argv
 
 __name = "JACK Audio Connection Kit to Serial Interface Bridge"
-__version = "1.0.0"
+__version = "1.0.1"
 version_info = __name + " " + __version
 prompt = "\n**Press Enter to Quit**"
 
@@ -39,7 +44,9 @@ print (sys.version)
 # Set Number of Monophonic Devices for Pseudo Polyphonic Function
 if args.pppenable is True:
     ppp_midichannel = args.pppchannel[0] - 1
-    ppp_numberdevices = args.pppnumber[0]
+    ppp_voices = args.pppvoices[0]
+    ppp_numberdevices = args.pppnumber[0] * ppp_voices # If multi voices in each monophonic devices
+    ppp_voices = ppp_voices - 1 # Use with logical shift right
     # Make Table to Check Active/Inactive Monophonic Devices and Current Tone Number
     ppp_devices = []
     for i in range(0, ppp_numberdevices, 1):
@@ -71,6 +78,8 @@ def process(frames):
             bytes.append(int(data[start:end], 16))
 
         bytes = psuedo_polyphonic(bytes)
+        if bytes == None: # If bytes is None because of ---pppinvisible flag
+            continue
 
         #print(offset, end="\n")
         #print(data, end="\n")
@@ -93,7 +102,7 @@ def psuedo_polyphonic(bytes):
                     if midistatus <= 8: # If Note Off
                         for i in range(0, ppp_numberdevices, 1): # If 3 bytes, len(data) will be 6. Divided By 2 through Logical Shift Right.
                             if ppp_devices[i] == bytes[count + 1]:
-                                bytes[count] = (byte_int & 0xF0) + ((ppp_midichannel + i + 1) & 0xF)
+                                bytes[count] = (byte_int & 0xF0) + ((ppp_midichannel + (i >> ppp_voices) + 1) & 0xF)
                                 ppp_devices[i] = 0x80
 
                                 break # Break For Loop, Not If Syntax
@@ -103,7 +112,7 @@ def psuedo_polyphonic(bytes):
                     elif midistatus <= 9: # If Note On
                         for i in range(0, ppp_numberdevices, 1): # If 3 bytes, len(data) will be 6. Divided By 2 through Logical Shift Right.
                             if ppp_devices[i] >= 0x80:
-                                bytes[count] = (byte_int & 0xF0) + ((ppp_midichannel + i + 1) & 0xF)
+                                bytes[count] = (byte_int & 0xF0) + ((ppp_midichannel + (i >> ppp_voices) + 1) & 0xF)
                                 ppp_devices[i] = bytes[count + 1]
 
                                 break # Break For Loop, Not If Syntax
@@ -113,23 +122,27 @@ def psuedo_polyphonic(bytes):
                     elif midistatus <= 10: # If Polyphonic Key Pressure
                         for i in range(0, ppp_numberdevices, 1): # If 3 bytes, len(data) will be 6. Divided By 2 through Logical Shift Right.
                             if ppp_devices[i] == bytes[count + 1]:
-                                bytes[count] = (byte_int & 0xF0) + ((ppp_midichannel + i + 1) & 0xF)
+                                bytes[count] = (byte_int & 0xF0) + ((ppp_midichannel + (i >> ppp_voices) + 1) & 0xF)
 
                                 break # Break For Loop, Not If Syntax
 
                         return bytes
 
                     else: # If Other Messages, Pitch Bend, etc.
-                        bytes_tuple = tuple(bytes) # Make Constant List from Dynamic List
-                        bytes.clear() # Clear to Empty List
-                        for i in range(0, ppp_numberdevices, 1):
-                            for byte_tuple_int in bytes_tuple:
-                                if byte_tuple_int >= 0x80: # If Status Byte
-                                    bytes.append((byte_tuple_int & 0xF0) + ((ppp_midichannel + i + 1) & 0xF))
+                        #bytes_tuple = tuple(bytes) # Make Constant List from Dynamic List
+                        newbytes = [] # New List
+                        for i in range(0, ppp_numberdevices >> ppp_voices, 1):
+                            for byte2 in bytes:
+                                if byte2 >= 0x80: # If Status Byte
+                                    newbytes.append((byte2 & 0xF0) + ((ppp_midichannel + i + 1) & 0xF))
                                 else: # If Data Byte
-                                    bytes.append(byte_tuple_int)
+                                    newbytes.append(byte2)
+                        time.sleep(0.0002) # Wait for Time
+                        return newbytes
 
-                        return bytes
+                else: # If not PPP Channel
+                    if args.pppinvisible == True: # If PPP Invisible
+                       bytes = None
 
     return bytes
 
