@@ -94,22 +94,23 @@ class UartConsole:
     def __del__(self):
         self.__uart.close()
 
-print (sys.version)
-argv = sys.argv
-print (argv[0]) # File Name
+if __name__ == '__main__':
 
-fsrc = open( argv[1], "rb") # Read Only With Raw Data (Integer)
-text_all = fsrc.read()
-if len(argv) == 6: # If Sixth Argument Exists (File to Write)
-    fdst = open( argv[5], "w+") # Write Only With UTF-8
-else:
-    fdst = None;
+    print (sys.version)
+    argv = sys.argv
+    print (argv[0]) # File Name
 
-uart = serial.Serial(port = argv[2], baudrate = int(argv[3]), timeout = float(argv[4]))
-uartconsole = UartConsole(uart, fdst)
-uartconsole.send(text_all, True, False)
-uartconsole.receive(True, True)
-uartconsole.input()
-uartconsole.receive(True, True)
-del uartconsole
+    fsrc = open( argv[1], "rb") # Read Only With Raw Data (Integer)
+    text_all = fsrc.read()
+    if len(argv) == 6: # If Sixth Argument Exists (File to Write)
+        fdst = open( argv[5], "w+") # Write Only With UTF-8
+    else:
+        fdst = None;
 
+    uart = serial.Serial(port = argv[2], baudrate = int(argv[3]), timeout = float(argv[4]))
+    uartconsole = UartConsole(uart, fdst)
+    uartconsole.send(text_all, True, False)
+    uartconsole.receive(True, True)
+    uartconsole.input()
+    uartconsole.receive(True, True)
+    del uartconsole
