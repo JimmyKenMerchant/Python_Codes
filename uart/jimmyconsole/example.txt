@@ -1,4 +1,4 @@
-* This script is for Aloha Calc
+* This script is for Aloha Calc (Ver. 1.0.0 and later)
 .true \e[32;43mHello\e[0m
 .false \e[33;41mWorld!\e[0m
 .d 0b10000000,
@@ -9,20 +9,20 @@
    0b00000100,
    0b00000010,
    0b00000001
-.d-end
-.d-ptr
-.d-length
+.d_end
+.d_ptr
+.d_length
 .arr0
-.1-byte-align 0
+.1_byte_align 0
 .row    10
 .column 20
-.font-size 8
-ptr .d-end .d-end
-ptr .d-ptr .d
-sub .d-length .d-end .d-ptr
-arr .arr0 .d-ptr .d-length .1-byte-align
-fnt .font-size .font-size
+.font_size 8
+ptr .d_end .d_end
+ptr .d_ptr .d
+int .d_length = .d_end - .d_ptr
+arr .arr0 .d_ptr .d_length .1_byte_align
+fnt .font_size .font_size
 csr .row .column
-pict .true .false .arr0 .1-byte-align
+pict .true .false .arr0 .1_byte_align
 end
 run

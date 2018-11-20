@@ -1,0 +1,28 @@
+* This script is for Aloha Calc
+.true \e[32;43mHello\e[0m
+.false \e[33;41mWorld!\e[0m
+.d 0b10000000,
+   0b01000000,
+   0b00100000,
+   0b00010000,
+   0b00001000,
+   0b00000100,
+   0b00000010,
+   0b00000001
+.d-end
+.d-ptr
+.d-length
+.arr0
+.1-byte-align 0
+.row    10
+.column 20
+.font-size 8
+ptr .d-end .d-end
+ptr .d-ptr .d
+sub .d-length .d-end .d-ptr
+arr .arr0 .d-ptr .d-length .1-byte-align
+fnt .font-size .font-size
+csr .row .column
+pict .true .false .arr0 .1-byte-align
+end
+run

@@ -1,4 +1,4 @@
-* This script is for Aloha Calc (Ver. 1.0.0 and later).
+* This script is for Aloha Calc
 .year 2018
 .month 3
 .week
@@ -7,9 +7,9 @@
 .minute 0
 .second 0
 .usecond 0
-.sleep_time 10000000
+.sleep-time 10000000
 stime .year .month .day .hour .minute .second .usecond
-sleep .sleep_time
+sleep .sleep-time
 gtime .year .month .week .day .hour .minute .second .usecond
 end
 run
