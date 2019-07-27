@@ -2,9 +2,16 @@
 
 **Usage on Raspbian (One of Linux Distributions)**
 
+* Make sure to enable UART through `sudo raspi-config`: 5 Interfacing Options > P6 Serial > No (serial login shell) > Yes (serial interface) > OK > Finish (Reboot)
+
+* I recommend that you add `dtoverlay=pi3-miniuart-bt` and `core_freq=250` in /boot/config.txt to enable serial0 on RasPi with the wireless module.
+
 * Install jackclient-python and pyserial
 
 ```bash
+# Install QjackCtl and a2jmidid
+sudo apt-get install qjackctl a2jmidid
+
 # Check List of Libraries
 python3 -m pip list
 
