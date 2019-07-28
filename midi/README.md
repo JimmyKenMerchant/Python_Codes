@@ -1,17 +1,37 @@
 # JACK Audio Connection Kit to Serial Interface Bridge
 
+**Purpose**
+
+* Connector Between JACK MIDI and Serial Interface Written by Python
+	* JACK Audio Connection Kit is an audio I/O controller (sound driver), which connects between physical/software audio devices.
+	* JACK MIDI shows physical/software MIDI devices which drive with JACK libraries (API), which can be written by Python.
+	* ALSA is a sound driver, which controls sound cards, MIDI devices, etc. It's a part of Linux kernel.
+	* ALSA MIDI shows physical/software MIDI devices which drive with ALSA libraries (API).
+	* a2jmidid is a connector between ALSA MIDI and JACK MIDI.
+	* Serial Interface is a UART peripheral, which is also used as a part of MIDI physical.
+	* Serial Interface can also be controlled by Python.
+	* So I decided to make this project with Python, a well-known language.
+
+**Caution**
+
+* The baud rate of UART in MIDI is 31250 baud rate. However, in this README, UART is set with 115200 baud rate. You can see the MIDI connectors and jacks, which is needed to be DIY. I suppose this project is used with [my Raspberry Pi project](https://github.com/JimmyKenMerchant/RaspberryPi).
+
 **Usage on Raspbian (One of Linux Distributions)**
 
 * Make sure to enable UART through `sudo raspi-config`: 5 Interfacing Options > P6 Serial > No (serial login shell) > Yes (serial interface) > OK > Finish (Reboot)
 
-* I recommend that you add `dtoverlay=pi3-miniuart-bt` and `core_freq=250` in /boot/config.txt to enable serial0 on RasPi with the wireless module.
+* I recommend that you add `dtoverlay=pi3-miniuart-bt` and `core_freq=250` in /boot/config.txt to enable serial0 on RasPi with the wireless module. In case, there is `dtoverlay=pi3-disable-bt` which disables Bluetooth.
 
-* Install jackclient-python and pyserial
+* Install Linux Softwares
 
 ```bash
-# Install QjackCtl and a2jmidid
-sudo apt-get install qjackctl a2jmidid
+# Install QjackCtl (Audio I/O Control), a2jmidid (ALSA MIDI to JACK MIDI Bridege), jack-keyboard (Software Keyboard), Qtractor (MIDI Sequencer)
+sudo apt-get install qjackctl a2jmidid jack-keyboard qtractor
+```
 
+* Install jackclient-python and pyserial, Python3 Libraries
+
+```bash
 # Check List of Libraries
 python3 -m pip list
 
@@ -29,6 +49,8 @@ python3 -m pip install pyserial --user
 qjackctl
 # Push "Start"
 ```
+
+* To bridge ALSA MIDI (System MIDI) and JACK MIDI, add `a2jmidid -e &` in QjackCtl (go to "Setup" and select "Options" tab. Check "Execute script after Startup", and write `a2jmidid -e &` in the textbox). You can check MIDI ports, such as USB MIDI keyboard, in "a2j" at "MIDI" tab of "Connections" menu (USB MIDI keyboard can be checked in the left side box, "Readable Clients / Output Ports").
 
 * Install This Project and Run
 
@@ -48,7 +70,7 @@ chmod u+x midi2serial.py
 
 * Select both a port you want to connect in "Readable Clients / Output Ports" and "MIDI-TO-SERIAL" in "Writable Clients / Input Ports", then click "Connect" button. A line will be drawn to show the connection of two ports.
 
-* If you want to bridge ALSA MIDI (System MIDI) and JACK MIDI, add `a2jmidid -e &` in QjackCtl (go to "Setup" and select "Options" tab. Check "Execute script after Startup", and write `a2jmidid -e &` in the textbox). You can check MIDI ports, such as USB MIDI keyboard, in "a2j" at "MIDI" tab of "Connections" menu (USB MIDI keyboard can be checked in the left side box, "Readable Clients / Output Ports").
+* For example, run jack-keyboard, then connect "midi_out" of "jack-keyboard" in "Readable Clients / Output Ports" and "input" of "MIDI-TO-SERIAL" in "Writable Clients / Input Ports".
 
 * (Optional) Psuedo polyphonic (PPP) function
 	* Psuedo polyphonic function sends MIDI message to an inactive monophonic device to make a chord on a device, such as keyboard, etc.
