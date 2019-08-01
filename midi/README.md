@@ -1,4 +1,4 @@
-# JACK Audio Connection Kit to Serial Interface Bridge
+# JACK Audio Connection Kit to Serial Interface Bridge (midi2serial)
 
 **Purpose**
 
@@ -14,19 +14,24 @@
 
 **Caution**
 
-* The baud rate of UART in MIDI is 31250 baud rate. However, in this README, UART is set with 115200 baud rate. You can see the MIDI connectors and jacks, which is needed to be DIY. I suppose this project is used with [my Raspberry Pi project](https://github.com/JimmyKenMerchant/RaspberryPi).
+* The baud rate of UART in MIDI is 31250 baud rate. However, in this README, UART is set with 115200 baud rate to drive midi2serial because of holding compatibility with microcontrollers. You can also see the MIDI plugs and jacks, MIDI IN and MIDI OUT schematics, which are needed to be DIY. I suppose this project is used with [my Raspberry Pi project](https://github.com/JimmyKenMerchant/RaspberryPi).
 
-**Usage on Raspbian (One of Linux Distributions)**
+* I also recognize that you want DTM on Linux. You can install software MIDI Synths, e.g., ZynAddSubFx, FluidSynth, etc. These work with packages used in this project and show in the tabs of QjackCtl (these have to connect with the system in "Audio" tab to sound).
+
+**Usage on Raspbian (One of Linux Distributions) with Raspberry Pi**
 
 * Make sure to enable UART through `sudo raspi-config`: 5 Interfacing Options > P6 Serial > No (serial login shell) > Yes (serial interface) > OK > Finish (Reboot)
 
-* I recommend that you add `dtoverlay=pi3-miniuart-bt` and `core_freq=250` in /boot/config.txt to enable serial0 on RasPi with the wireless module. In case, there is `dtoverlay=pi3-disable-bt` which disables Bluetooth.
+* I recommend that you add `dtoverlay=pi3-miniuart-bt` and `core_freq=250` in /boot/config.txt to enable serial0 on RasPi with the embedded wireless module, Zero W, 3B, etc. In case, there is `dtoverlay=pi3-disable-bt` which disables Bluetooth. Reboot to enable these parameters.
 
-* Install Linux Softwares
+* Install Linux Packages
 
 ```bash
 # Install QjackCtl (Audio I/O Control), a2jmidid (ALSA MIDI to JACK MIDI Bridege), jack-keyboard (Software Keyboard), Qtractor (MIDI Sequencer)
 sudo apt-get install qjackctl a2jmidid jack-keyboard qtractor
+
+# Optional Software Synths, FluidSynth Has to Set SoundFont to Sound
+sudo apt-get install zynaddsubfx fluidsynth
 ```
 
 * Install jackclient-python and pyserial, Python3 Libraries
@@ -61,8 +66,9 @@ cd Python_Codes/midi
 chmod u+x midi2serial.py
 # Check Arguments
 ./midi2serial.py -h
-# In this case, the baud rate of UART is 115200 bps, 11520 bytes per second; UART needs 2 bits for start and stop bits.
-# 0.01 (seconds) is read timeout value (3rd argument)
+# In this case, the baud rate of UART is 115200 bps, 11520 bytes per second (2nd argument);
+# UART needs 2 bits for start and stop bits, plus 8 bits for data to transmit 1 byte.
+# 0.01 (seconds) is the value of read timeout (3rd argument).
 ./midi2serial.py -s /dev/serial0 -b 115200 -t 0.01
 ```
 
@@ -72,17 +78,17 @@ chmod u+x midi2serial.py
 
 * For example, run jack-keyboard, then connect "midi_out" of "jack-keyboard" in "Readable Clients / Output Ports" and "input" of "MIDI-TO-SERIAL" in "Writable Clients / Input Ports".
 
-* (Optional) Psuedo polyphonic (PPP) function
-	* Psuedo polyphonic function sends MIDI message to an inactive monophonic device to make a chord on a device, such as keyboard, etc.
-	* If transit MIDI channel matches PPP channel, PPP function searches inactive monophonic devices.
-	* The MIDI channel is changed from PPP channel to PPP channel + device ID number if any inactive monophonic device is searched.
-	* Device ID numbers are assigned from 1 to the number of monophonic devices in this program.
+* As another example, run Qtractor, then connect "Qtractor" of "a2j" in "Readable Clients / Output Ports" and "input" of "MIDI-TO-SERIAL" in "Writable Clients / Input Ports".
+
+* (Optional) Pseudo polyphonic (PPP) function
+	* PPP function sends multiple MIDI messages to monophonic (MIDI Mode 4) devices to make a chord.
+	* If transit MIDI channel matches the PPP channel, PPP function searches inactive monophonic devices.
+	* If any inactive monophonic device is searched, PPP channel is changed to PPP channel + the device ID number.
+	* Device ID numbers are assigned from 1 to the number of monophonic devices.
 	* Monophonic devices need to be set these own channels from the next of PPP channel in advance.
 
 ```bash
 # In this case, enable PPP (4th argument), PPP channel is set to 1 (5th argument), and the number of monophonic devices is 3 (6th argument).
-# If Baud Rate Is 115200, I Recommend that you apply up to 3 devices
-# because 115200 includes 3 times as many as 31250, MIDI Baud Rate.
 ./midi2serial.py -s /dev/serial0 -b 115200 -t 0.01 -p -c 1 -n 3
 ```
 
