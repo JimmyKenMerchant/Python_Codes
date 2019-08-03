@@ -6,10 +6,12 @@
    7,7,7,7,7,7,6,6,6,6,6,6,
    5,5,4,4,3,3,3,3,4,4,5,5,
    xFFFF
+.d_end
 .d_length
 .d_ptr
 .i x308,x309,x30A,x308,x309,x30A,x308,x309,x30A,x308,x309,x30A,
    xFFFF
+.i_end
 .i_length
 .i_ptr
 .2_byte_align 1
