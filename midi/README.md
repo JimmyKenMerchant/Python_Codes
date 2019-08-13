@@ -92,6 +92,18 @@ chmod u+x midi2serial.py
 ./midi2serial.py -s /dev/serial0 -b 115200 -t 0.01 -p -c 1 -n 3
 ```
 
+* Extend Virtual Memory Size
+	* If you feel awkward when using these package at the same time, you can extend virtual memory size.
+	* In Linux, its virtual memory is called as "swap", and located as a file, "/var/swap".
+```bash
+# Edit CONF_SWAPSIZE in /etc/dphys-swapfile to 1024 and more.
+sudo nano /etc/dphys-swapfile
+sudo /etc/init.d/dphys-swapfile stop
+sudo /etc/init.d/dphys-swapfile start
+# Verify the size is actually the value you set, e.g., CONF_SWAPSIZE=1024 makes the value 1073741824 (1GB).
+stat /var/swap
+```
+
 **Information about Licenses**
 
 * License of This Project: 3-Clause BSD License
