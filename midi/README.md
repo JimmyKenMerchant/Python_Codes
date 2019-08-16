@@ -16,7 +16,7 @@
 
 * The baud rate of UART in MIDI is 31250 baud rate. However, in this README, UART is set with 115200 baud rate to drive midi2serial because of holding compatibility with microcontrollers. You can also see the MIDI plugs and jacks, MIDI IN and MIDI OUT schematics, which are needed to be DIY. I suppose this project is used with [my Raspberry Pi project](https://github.com/JimmyKenMerchant/RaspberryPi).
 
-* I also recognize that you want DTM on Linux. You can install software MIDI Synths, e.g., ZynAddSubFx, FluidSynth, etc. These work with packages used in this project and show in the tabs of QjackCtl (these have to connect with the system in "Audio" tab to sound).
+* I also recognize that you want DTM on Linux. You can install software MIDI synths, e.g., ZynAddSubFx, FluidSynth, etc. These work with packages used in this project and show in the tabs of QjackCtl (these have to connect with the system in "Audio" tab to sound).
 
 **Usage on Raspbian (One of Linux Distributions) with Raspberry Pi**
 
@@ -90,6 +90,21 @@ chmod u+x midi2serial.py
 ```bash
 # In this case, enable PPP (4th argument), PPP channel is set to 1 (5th argument), and the number of monophonic devices is 3 (6th argument).
 ./midi2serial.py -s /dev/serial0 -b 115200 -t 0.01 -p -c 1 -n 3
+```
+
+* Recording by Audacity
+	* Audacity is a recording tool, which can be connected with software MIDI synths through QjackCtl.
+	* You can record external sound by Audacity through a USB-to-microphone adapter, etc.
+```bash
+# Install Audacity and Lame (MP3 Encoder)
+sudo apt-get install audacity lame lame-doc
+# Run QjackCtl and Start
+qjackctl
+# Run Software MIDI Synth:
+# Connect out_1/out_2 of zynaddusbfx and playback_1/playback_2 of system in Audio Tab of Connections Menu, QjackCtl.
+zynaddsubfx
+# Run Audacity: Select the recording device to "Jack Audio Connection Kit", "zynaddsubfx".
+audacity
 ```
 
 * Extend Virtual Memory Size
