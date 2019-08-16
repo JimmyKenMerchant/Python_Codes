@@ -91,10 +91,11 @@ chmod u+x midi2serial.py
 # In this case, enable PPP (4th argument), PPP channel is set to 1 (5th argument), and the number of monophonic devices is 3 (6th argument).
 ./midi2serial.py -s /dev/serial0 -b 115200 -t 0.01 -p -c 1 -n 3
 ```
-
 * Recording by Audacity
 	* Audacity is a recording tool, which can be connected with software MIDI synths through QjackCtl.
 	* You can record external sound by Audacity through a USB-to-microphone adapter, etc.
+	* Note that [Sonic Pi](https://sonic-pi.net/) can be recorded by Audacity because this uses JACK Audio Connection Kit.
+
 ```bash
 # Install Audacity and Lame (MP3 Encoder)
 sudo apt-get install audacity lame lame-doc
@@ -106,7 +107,6 @@ zynaddsubfx
 # Run Audacity: Select the recording device to "Jack Audio Connection Kit", "zynaddsubfx".
 audacity
 ```
-
 * Extend Virtual Memory Size
 	* If you feel awkward when using these package at the same time, you can extend virtual memory size.
 	* In Linux, its virtual memory is called as "swap", and located as a file, "/var/swap".
