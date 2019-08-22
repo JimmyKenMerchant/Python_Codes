@@ -108,8 +108,9 @@ zynaddsubfx
 audacity
 ```
 * Extend Virtual Memory Size
-	* If you feel awkward when using these package at the same time, you can extend virtual memory size.
+	* If you feel awkward when using these package at the same time, you can extend virtual memory size
 	* In Linux, its virtual memory is called as "swap", and located as a file, "/var/swap".
+	* E.g., cached data expands usage of the memory.
 ```bash
 # Edit CONF_SWAPSIZE in /etc/dphys-swapfile to 1024 and more.
 sudo nano /etc/dphys-swapfile
@@ -117,6 +118,11 @@ sudo /etc/init.d/dphys-swapfile stop
 sudo /etc/init.d/dphys-swapfile start
 # Verify the size is actually the value you set, e.g., CONF_SWAPSIZE=1024 makes the value 1073741824 (1GB).
 stat /var/swap
+```
+	* Note that in some cases handling with big data, e.g., after installing package, you would need to clear cached data. It helps to save the right behavior of the OS. Shutdown without synchronizing causes the odd behavior.
+```bash
+# Force to sync cached data in the storage.
+sync
 ```
 
 **Information about Licenses**
