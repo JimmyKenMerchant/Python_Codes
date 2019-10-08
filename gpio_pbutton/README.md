@@ -16,7 +16,7 @@ License: BSD-3-Clause
 
 ![Example of Connecting Type #1](images/connecting_1.jpg "Type #1 (Direct): RasPi 2B with Raspbian for GPIO Push Button and RasPi Zero W with Aloha Operating System Bridged by A Breadboard")
 
-* Connecting Type #2 (Clock): GPIO13 is Clock Out. Clock Out outputs high state regularly. If any button is pushed, Clock Out goes low state, and other pins output status of buttons before Clock Out goes back high state. The latest version of Coconuts uses this clock for synchronization. The time of delay for Clock Out can be defined as the first argument.
+* Connecting Type #2 (Clock): GPIO13 is Clock Out. Clock Out outputs low state regularly. If any button is pushed, Clock Out goes high state, and other pins output status of buttons before Clock Out goes back low state. The latest version of Coconuts uses this clock for synchronization. The time of delay for Clock Out can be defined as the first argument.
 
 * Clone my project and run the python file in a terminal of Raspbian. Installing Git is needed in advance.
 
