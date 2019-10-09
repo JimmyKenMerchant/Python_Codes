@@ -8,7 +8,7 @@ License: BSD-3-Clause
 
 * GPIO Push Button is a series of GUI buttons aimed to use for Kenta Ishii's project on Raspberry Pi (RasPi), [Aloha Operating System](https://github.com/JimmyKenMerchant/RaspberryPi).
 
-* Some of my projects in Aloha Operating System are aiming to make RasPi act like dedicated IC such as Sound Box, Synthesizer, LED Driver nicknamed "Coconut". Interfaces on Coconuts are 5-bit parallel (GPIO22-25) which 31 commands can be selected. To debug the RasPi projects, I build GPIO Push Button which is coded by Python 3.
+* Some of my projects in Aloha Operating System are aiming to make RasPi act like dedicated IC such as Sound Box, Synthesizer, LED Driver nicknamed "Coconuts". Interfaces on Coconuts are 5-bit parallel (GPIO22-25) which 31 commands can be selected. To debug the RasPi projects, I build GPIO Push Button which is coded by Python 3.
 
 **USAGE**
 
@@ -16,7 +16,7 @@ License: BSD-3-Clause
 
 ![Example of Connecting Type #1](images/connecting_1.jpg "Type #1 (Direct): RasPi 2B with Raspbian for GPIO Push Button and RasPi Zero W with Aloha Operating System Bridged by A Breadboard")
 
-* Connecting Type #2 (Clock): GPIO13 is Clock Out. Clock Out outputs low state regularly. If any button is pushed, Clock Out goes high state, and other pins output status of buttons before Clock Out goes back low state. The latest version of Coconuts uses this clock for synchronization. The time of delay for Clock Out can be defined as the first argument.
+* Connecting Type #2 (Clock): GPIO13 is Clock OUT. Clock OUT outputs low state regularly. If any button is pushed, Clock OUT goes high state, and other pins output status of buttons before Clock OUT goes back low state. The latest version of Coconuts uses this clock for synchronization.
 
 * Clone my project and run the python file in a terminal of Raspbian. Installing Git is needed in advance.
 
@@ -33,17 +33,44 @@ chmod u+x gpio_pbutton.py
 
 **OUTPUT**
 
-* GPIO13 as Clock Out
+* GPIO13 as Clock OUT, Connect to GPIO27 (Clock IN for Buttons) of Coconuts
 
-* GPIO16 as Bit[0]
+* GPIO16 as Bit[0], Connect to GPIO22 (Button Bit[0]) of Coconuts
 
-* GPIO19 as Bit[1]
+* GPIO19 as Bit[1], Connect to GPIO23 (Button Bit[1]) of Coconuts
 
-* GPIO20 as Bit[2]
+* GPIO20 as Bit[2], Connect to GPIO24 (Button Bit[2]) of Coconuts
 
-* GPIO21 as Bit[3]
+* GPIO21 as Bit[3], Connect to GPIO25 (Button Bit[3]) of Coconuts
 
-* GPIO26 as Bit[4]
+* GPIO26 as Bit[4], Connect to GPIO26 (Button Bit[4]) of Coconuts
+
+**CLOCK SIGNAL**
+
+* Coconuts detect rising edges of Bit[4:0] parallelly when Clock has a falling edge.
+
+* The example of signal timing is as follows. 0b11101 is output at first, and 0b01011 is output at the next.
+
+* When you push a button in GUI, Clock OUT goes high state at first, then Bit[4:0] change these state.
+
+* The time of delay between rising edges of Bit[4:0] and a falling edge of Clock can be defined as the first argument.
+
+* When you release a button in GUI, signals of Bit[4:0] go all low state.
+
+```
+# Clock
+____JTTTTTL_____JTTTTTL_____
+# Bit[0]
+______JTTTTTL_____JTTTTTL___
+# Bit[1]
+__________________JTTTTTL___
+# Bit[2]
+______JTTTTTL_______________
+# Bit[3]
+______JTTTTTL_____JTTTTTL___
+# Bit[4]
+______JTTTTTL_______________
+```
 
 **COMPATIBILITY**
 
