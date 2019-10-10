@@ -18,7 +18,7 @@ color_even_bg= "gray"
 color_label_bg= "white"
 
 # Text Settings
-version_info = "GPIO Push Button 0.9.3 Beta"
+version_info = "GPIO Push Button 0.9.4 Beta"
 indicator_info = "NOW: "
 button1_text = "Button1"
 button2_text = "Button2"
@@ -59,7 +59,7 @@ class GraphicalInterface:
 
         print(version_info + ": START")
 
-        clock_button = 13
+        clock_button = 12
         list_gpio_button1 = [16]
         list_gpio_button2 = [19]
         list_gpio_button3 = [16,19]
@@ -500,7 +500,7 @@ print(sys.version)
 
 gpio.setmode(gpio.BCM)
 
-list_gpio_output = [13,16,19,20,21,26]
+list_gpio_output = [12,16,19,20,21,26]
 gpio.setup(list_gpio_output, gpio.OUT)
 gpio.output(list_gpio_output, 0)
 
