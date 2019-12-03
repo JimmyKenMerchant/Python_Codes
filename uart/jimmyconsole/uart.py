@@ -41,7 +41,7 @@ class UartConsole:
                         self.write(char_res)
                     if enmirror == True: # External Mirror
                         char_res = chr(int.from_bytes(char_res, "little"))
-                        print(char_res, end="")
+                        print(char_res, end="", flush=True)
                 elif char_res == char_nak: # Receive Negative Acknowledge
                     time.sleep(0.001)
                 else: # Receive Fails
@@ -54,7 +54,16 @@ class UartConsole:
                     self.write(char)
                 if enmirror == True:
                     char = chr(int.from_bytes(char, "little"))
-                    print(char, end="")
+                    print(char, end="", flush=True)
+                char = self.__uart.read(1)
+
+    def receive_bytes(self, enmirror, enwrite):
+            char = self.__uart.read(1)
+            while len(char) != 0:
+                if enwrite == True:
+                    self.write(char)
+                if enmirror == True:
+                    print(char.hex(), flush=True)
                 char = self.__uart.read(1)
 
     def write(self,char):
@@ -71,7 +80,7 @@ class UartConsole:
                     text_input = input()
                 except KeyboardInterrupt:
                     break
-                print("\x1B[A", end="") # Cursor Up
+                print("\x1B[A", end="", flush=True) # Cursor Up
                 text_input += "\r"
                 text_input = text_input.encode("ascii", "replace")
                 self.send(text_input, True, False)
@@ -83,13 +92,13 @@ class UartConsole:
                     text_input = input().split() # Make List Split By Space
                 except KeyboardInterrupt:
                     break
-                #print(text_input)
+                #print(text_input, flush=True)
                 for text in text_input: # Integer
-                    #print(text, end="\n")
+                    #print(text, end="\n", flush=True)
                     integer = int(text, 16) # String to Integer with Hexadecimal
                     byte = integer.to_bytes(1, "little") # Integer Type to Binary
                     self.__uart.write(byte)
-                    print(byte, end="\n")
+                    print(byte, end="\n", flush=True)
 
     def __del__(self):
         self.__uart.close()
