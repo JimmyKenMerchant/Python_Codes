@@ -2,7 +2,7 @@
 
 # Author: Kenta Ishii
 # SPDX short identifier: BSD-3-Clause
-# ./uart_rx_bytes.py /dev/serial0 115200 0.01
+# ./uart_rx_bytes.py /dev/serial0 38400 0.01
 
 import sys
 import serial
