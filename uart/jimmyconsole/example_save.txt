@@ -1,0 +1,28 @@
+* This script is for Aloha Calc (Ver. 1.0.0 and later)
+save @11 .a .b
+.a 5
+.b 0b000
+save @18 .c .d
+.c 8
+.d 0b001
+end
+
+* Code to Be Saved at Chip Address 0b000
+label
+load @1 .e .f
+.e 8
+.f 0b001
+jmp @1
+
+* Code to Be Saved at Chip Address 0b001
+label
+intb .answer .number1 * .number2
+.answer
+.number1 123456789
+.number2 123
+print .answer
+end
+jmp @1
+
+* Run for Saving
+run

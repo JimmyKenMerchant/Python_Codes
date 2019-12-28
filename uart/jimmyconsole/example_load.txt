@@ -1,0 +1,5 @@
+* This script is for Aloha Calc (Ver. 1.0.0 and later)
+load @1 .a .b
+.a 5
+.b 0b000
+run
