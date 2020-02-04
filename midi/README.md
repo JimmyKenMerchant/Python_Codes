@@ -27,8 +27,8 @@
 * Install Linux Packages
 
 ```bash
-# Install QjackCtl (Audio I/O Control), a2jmidid (ALSA MIDI to JACK MIDI Bridege), jack-keyboard (Software Keyboard), Qtractor (MIDI Sequencer)
-sudo apt-get install qjackctl a2jmidid jack-keyboard qtractor
+# Install QjackCtl (Audio I/O Control), a2jmidid (ALSA MIDI to JACK MIDI Bridege), jack-keyboard (Software Keyboard), Qtractor (MIDI Sequencer), QMidiArp (Arpeggiator)
+sudo apt-get install qjackctl a2jmidid jack-keyboard qtractor qmidiarp
 
 # Optional Software Synths, FluidSynth Has to Set SoundFont to Sound
 sudo apt-get install zynaddsubfx fluidsynth
