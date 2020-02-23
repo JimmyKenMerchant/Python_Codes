@@ -20,6 +20,7 @@ color_label_bg= "white"
 # Text Settings
 version_info = "GPIO Push Button 0.9.4 Beta"
 indicator_info = "NOW: "
+button0_text = "RESET"
 button1_text = "Button1"
 button2_text = "Button2"
 button3_text = "Button3"
@@ -92,6 +93,12 @@ class GraphicalInterface:
         list_gpio_button30 = [19,20,21,26]
         list_gpio_button31 = [16,19,20,21,26]
 
+        def push_button0(event):
+            gpio.output(clock_button, 1)
+            gpio.output(list_gpio_button31, 0)
+            time.sleep(time_delay)
+            gpio.output(clock_button, 0)
+            label_0.config(text=indicator_info + button0_text)
         def push_button1(event):
             gpio.output(clock_button, 1)
             gpio.output(list_gpio_button1, 1)
@@ -414,12 +421,15 @@ class GraphicalInterface:
         button_30 = tk.Button(frame, width=6, height=2, text=button30_text, font=("Roboto", "20"), bg=color_odd_bg, fg="yellow")
         button_30.grid(row=4, column=5, columnspan=1, padx=5, pady=5, ipadx=10, ipady=10)
 
-        button_31 = tk.Button(frame, width=18, height=2, text=button31_text, font=("Roboto", "20"), bg=color_even_bg, fg="yellow")
-        button_31.grid(row=5, column=0, columnspan=3, padx=5, pady=5, ipadx=10, ipady=10)
-        label_0 = tk.Label(frame, width=18, height=2, text=label0_text, font=("Roboto", "20"), bg=color_label_bg)
-        label_0.grid(row=5, column=3, columnspan=3, padx=5, pady=5, ipadx=10, ipady=10)
+        button_31 = tk.Button(frame, width=12, height=2, text=button31_text, font=("Roboto", "20"), bg=color_even_bg, fg="yellow")
+        button_31.grid(row=5, column=0, columnspan=2, padx=5, pady=5, ipadx=10, ipady=10)
+        button_0 = tk.Button(frame, width=12, height=2, text=button0_text, font=("Roboto", "20"), bg=color_even_bg, fg="yellow")
+        button_0.grid(row=5, column=2, columnspan=2, padx=5, pady=5, ipadx=10, ipady=10)
+        label_0 = tk.Label(frame, width=12, height=2, text=label0_text, font=("Roboto", "20"), bg=color_label_bg)
+        label_0.grid(row=5, column=4, columnspan=2, padx=5, pady=5, ipadx=10, ipady=10)
 
         # Left Mouse Button
+        button_0.bind("<Button-1>", push_button0)
         button_1.bind("<Button-1>", push_button1)
         button_2.bind("<Button-1>", push_button2)
         button_3.bind("<Button-1>", push_button3)
