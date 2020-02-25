@@ -17,10 +17,11 @@ num_gpio_busy_toggle = 6
 num_gpio_eop_toggle = 13
 list_data = []
 
-def dmx512_tx(list_data, count_data, time_delay):
-    i = 0;
-    while i < count_data:
-        data = list_data[i]
+def dmx512_tx(list_data, index, length, time_delay):
+    status_gpio_busy_toggle = gpio.input(num_gpio_busy_toggle)
+    length += index;
+    while index < length:
+        data = list_data[index]
         list_bit = []
         if data & 0b00001:
             list_bit.append(list_gpio_output[1])
@@ -36,17 +37,18 @@ def dmx512_tx(list_data, count_data, time_delay):
         gpio.output(list_gpio_output, 0)
         gpio.output(list_gpio_output[0], 1)
         gpio.output(list_bit, 1)
+        dup_time_delay = time_delay
+        while dup_time_delay > 0:
+            dup_time_delay -= 1
         gpio.output(list_gpio_output[0], 0) # Falling Edge of Clock
-        while time_delay > 0:
-             time_delay -= 1
-        i += 1
-        #while True:
-        #    if gpio.event_detected(num_gpio_busy_toggle) == 1:
-        #        i += 1
-        #        break
+        while True:
+            if status_gpio_busy_toggle != gpio.input(num_gpio_busy_toggle):
+                status_gpio_busy_toggle = gpio.input(num_gpio_busy_toggle)
+                index += 1
+                break
 
-def start_dmx512_tx(list_data, count_data, time_delay):
-    thread = threading.Thread(name='dmx512_tx', target=dmx512_tx, args=(list_data, count_data, time_delay, ))
+def start_dmx512_tx(list_data, index, length, time_delay):
+    thread = threading.Thread(name='dmx512_tx', target=dmx512_tx, args=(list_data, index, length, time_delay, ))
     thread.setDaemon(True)
     thread.start()
     return thread
@@ -59,7 +61,7 @@ def handle_sigint(signum, frame):
 argv = sys.argv
 
 if len(argv) == 1:
-    time_delay = 100
+    time_delay = 10
 else:
     time_delay = float(argv[1])
 
@@ -70,9 +72,9 @@ gpio.setmode(gpio.BCM)
 gpio.setup(list_gpio_output, gpio.OUT)
 gpio.output(list_gpio_output, 0)
 gpio.setup(num_gpio_busy_toggle, gpio.IN, pull_up_down=gpio.PUD_DOWN)
-gpio.add_event_detect(num_gpio_busy_toggle, gpio.BOTH)
+#gpio.add_event_detect(num_gpio_busy_toggle, gpio.BOTH)
 gpio.setup(num_gpio_eop_toggle, gpio.IN, pull_up_down=gpio.PUD_DOWN)
-gpio.add_event_detect(num_gpio_eop_toggle, gpio.BOTH)
+#gpio.add_event_detect(num_gpio_eop_toggle, gpio.BOTH)
 
 def handle_sigint(signum, frame):
     print(version_info + ": Force Stop")
@@ -83,29 +85,33 @@ signal.signal(signal.SIGINT, handle_sigint)
 
 # Initialization of Flushing Method
 list_data = [0x1F, 0x1B, 0x11, 0x00, 0x13]
-thread1 = start_dmx512_tx(list_data, 5, time_delay)
+thread1 = start_dmx512_tx(list_data, 0, 5, time_delay)
 thread1.join()
 
 # Set Initial Values and Start
 list_data = [1] * 1026
-thread1 = start_dmx512_tx(list_data, 1026, time_delay)
+thread1 = start_dmx512_tx(list_data, 0, 1026, time_delay)
 thread1.join()
 
 # Start DMX512 Transmission
 list_data = [0x1D, 0x1A]
-thread1 = start_dmx512_tx(list_data, 2, time_delay)
+thread1 = start_dmx512_tx(list_data, 0, 2, time_delay)
 thread1.join()
 
+status_gpio_eop_toggle = gpio.input(num_gpio_eop_toggle);
 count = 2
 while True:
     list_data = [count] * 1026
-    thread1 = start_dmx512_tx(list_data, 1026, time_delay)
+    thread1 = start_dmx512_tx(list_data, 0, 1026, time_delay)
     thread1.join()
     count += 1
     if count > 0xF:
         count = 0;
     while True:
-        if gpio.event_detected(num_gpio_eop_toggle) == 1:
+        if status_gpio_eop_toggle != gpio.input(num_gpio_eop_toggle):
+            status_gpio_eop_toggle = gpio.input(num_gpio_eop_toggle)
             break
+        #if gpio.event_detected(num_gpio_eop_toggle) == 1:
+        #    break
 
 gpio.cleanup()
