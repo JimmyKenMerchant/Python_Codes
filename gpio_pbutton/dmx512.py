@@ -2,12 +2,10 @@
 
 # Author: Kenta Ishii
 # SPDX short identifier: BSD-3-Clause
-# ./dmx512_tx.py
+# ./dmx512.py
 
 import RPi.GPIO as gpio
 import threading
-
-version_info = "DMX512 TX Alpha"
 
 class DMX512:
     """Dependency:RPi.GPIO, threading"""
@@ -39,7 +37,7 @@ class DMX512:
                 list_bit.append(self.list_gpio_output[4])
             if data & 0b10000:
                 list_bit.append(self.list_gpio_output[5])
-            print(list_bit)
+            #print(list_bit)
             gpio.output(self.list_gpio_output, 0)
             gpio.output(self.list_gpio_output[0], 1) # High State of Clock
             gpio.output(list_bit, 1)
@@ -70,6 +68,8 @@ if __name__ == '__main__':
     import time
     import signal
 
+    version_info = "DMX512 Alpha"
+
     def handle_sigint(signum, frame):
         print(version_info + ": Force Stop")
         sys.exit(0)
@@ -77,7 +77,7 @@ if __name__ == '__main__':
 
     argv = sys.argv
     if len(argv) == 1:
-        time_delay = 10
+        time_delay = 4
     else:
         time_delay = float(argv[1])
     print(sys.version)
@@ -109,6 +109,7 @@ if __name__ == '__main__':
         count += 1
         if count > 0xF:
             count = 0;
+            break
         while True:
             if status_gpio_eop_toggle != dmx512.eop_toggle():
                 status_gpio_eop_toggle = dmx512.eop_toggle()
