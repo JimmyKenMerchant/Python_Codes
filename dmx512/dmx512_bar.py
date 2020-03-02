@@ -2,7 +2,7 @@
 
 # Author: Kenta Ishii
 # SPDX short identifier: BSD-3-Clause
-# ./dmx512_tx.py
+# ./dmx512_bar.py
 
 import dmx512
 import tkinter as tk
@@ -76,7 +76,7 @@ def push_button_1(event):
     thread1 = dmx512.start_tx(list_data, 0, 4, time_delay)
     thread1.join()
     #print(entry_1.get())
-    
+
 # Left Mouse Button
 button_1.bind("<Button-1>", push_button_1)
 
